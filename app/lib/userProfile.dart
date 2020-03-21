@@ -7,6 +7,7 @@ import 'package:dsgdoctor/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProfile extends StatefulWidget {
@@ -32,11 +33,10 @@ class UserProfileState extends State<UserProfile> {
   var birthday;
 
   fillValues(){
-    print(this.profile.name);
-    //nameController.text = this.profile.name;
-   // dateController.text = this.profile.birthday.toString();
-   // contactNameController.text = this.profile.contactName;
-  //  contactPhoneNumberController.text = this.profile.contactTelephone;
+    nameController.text = this.profile.name;
+    dateController.text = this.profile.birthday == null ? "" : DateFormat('dd.MM.yyyy').format(this.profile.birthday);
+    contactNameController.text = this.profile.contactName;
+    contactPhoneNumberController.text = this.profile.contactTelephone;
   }
 
   saveProfileValues() async{
@@ -47,7 +47,7 @@ class UserProfileState extends State<UserProfile> {
     this.profile.contactName = contactNameController.text;
     this.profile.contactTelephone = contactPhoneNumberController.text;
 
-    prefs.setString("profile",this.profile.toJson().toString());
+    prefs.setString("profile",jsonEncode(this.profile.toJson()));
 
   }
 
@@ -58,8 +58,6 @@ class UserProfileState extends State<UserProfile> {
     TextStyle textStyle = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
     fillValues();
-
-    dateController.text = "";
 
     var nameField = TextField(
       style: textStyle,
