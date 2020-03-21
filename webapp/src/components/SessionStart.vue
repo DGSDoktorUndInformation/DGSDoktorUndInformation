@@ -1,22 +1,22 @@
 <template>
     <v-container>
-        <v-row justify align="center">
+        <v-row align="center">
             <v-col>
                 <v-row justify="center" align="center">
-                <v-form
-                        lazy-validation
-                        ref="form"
-                        v-model="valid"
-                >
-                    <v-text-field
-                            :counter="10"
-                            :rules="sessionkeyRules"
-                            v-model="sessionkey"
-                            label="Code des Patienten"
-                            required
-                    ></v-text-field>
-                    <v-btn :disabled="!valid" block color="primary" @click="submit">Weiter</v-btn>
-                </v-form>
+                    <v-form
+                            lazy-validation
+                            ref="form"
+                            v-model="valid"
+                    >
+                        <v-text-field
+                                :counter="10"
+                                :rules="sessionkeyRules"
+                                v-model="sessionkey"
+                                label="Code des Patienten"
+                                required
+                        ></v-text-field>
+                        <v-btn :disabled="!valid" block color="primary" @click="submit">Weiter</v-btn>
+                    </v-form>
                 </v-row>
             </v-col>
         </v-row>
@@ -25,6 +25,7 @@
 
 <script>
     import axios from "axios";
+
     export default {
         name: "SessionStart",
         data: () => ({
@@ -35,10 +36,11 @@
             ]
         }),
         methods: {
-            submit() {
-                if(this.sessionkey) {
-                axios.get("/session/"+this.sessionkey).then(response => console.log(response.data))
-            }}
+            async submit() {
+                this.$refs.form.validate();
+                const result = await axios.get("/session/" + this.sessionkey);
+                await this.$router.push({name: "Session", params: {data: result.data}});
+            }
 
         }
     }

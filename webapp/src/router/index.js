@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Faq from "../views/Faq";
 import AnleitungAerzte from "../views/AnleitungAerzte";
+import Session from "../views/Session";
 
 Vue.use(VueRouter)
 
@@ -16,6 +17,12 @@ const routes = [
     path: '/anleitung-aerzte',
     name: 'AnleitungAerzte',
     component: AnleitungAerzte
+  },
+  {
+    path: '/session',
+    name: 'Session',
+    component: Session,
+    props: true
   },
   {
     path: '/about',
