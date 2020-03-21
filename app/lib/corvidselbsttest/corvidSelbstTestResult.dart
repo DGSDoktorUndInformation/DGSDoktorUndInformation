@@ -20,7 +20,8 @@ class CorvidSelbstTestResult extends StatelessWidget {
         backgroundColor: ThemeColors.Primary,
         title: AppBarContent(),
     leading: IconButton(
-    onPressed: () => Dashboard(),
+    onPressed: () => Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context) => Dashboard()),
+            (Route<dynamic> route) => false),
     icon: Icon(Icons.arrow_back),
     tooltip: 'Zurück')),
     body: Text(corvidSelbsttestModel.getJson()));

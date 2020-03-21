@@ -31,7 +31,10 @@ class CorvidSelbsttestState extends State<CorvidSelbsttest> {
             .of(context)
             .textTheme
             .title),
-        Videoplayer(frage.video),
+        Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Videoplayer(frage.video),
+        ),
         Wrap(
             children: frage.suggestions
                 .map((x) => questionButton(frage.frage, x))
@@ -63,12 +66,6 @@ class CorvidSelbsttestState extends State<CorvidSelbsttest> {
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
@@ -82,7 +79,6 @@ class CorvidSelbsttestState extends State<CorvidSelbsttest> {
                 tooltip: 'Zurück')),
         body:
         StreamBuilder<Frage>(
-          initialData: corvidSelbsttestBloc.getInitialData(),
             stream: corvidSelbsttestBloc.outStream,
             builder: (BuildContext context, AsyncSnapshot snapshot) {
               switch (snapshot.connectionState) {
@@ -94,7 +90,7 @@ class CorvidSelbsttestState extends State<CorvidSelbsttest> {
                   if (snapshot.hasError)
                     return new Text('Error: ${snapshot.error}');
                   else if (!snapshot.hasData) {
-                    return Center(child: CircularProgressIndicator(),);
+                    return Center(child: MaterialButton(onPressed: () => { corvidSelbsttestBloc.getInitialData() }, child: Text("Test starten"),));
                   } else {
                     return createStep(snapshot.data);
                   }

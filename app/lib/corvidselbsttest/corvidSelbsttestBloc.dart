@@ -20,6 +20,7 @@ class CorvidSelbsttestBloc {
   CorvidSelbsttestBloc(CorvidSelbsttestFragen repository) {
     fragen = repository.getAll();
     model = new CorvidSelbsttestModel();
+    streamController.add(getInitialData());
   }
 
   answerQuestion(String question, String answer) {
