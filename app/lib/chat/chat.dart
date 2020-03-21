@@ -65,21 +65,26 @@ class ChatState extends State<Chat> {
     );
   }
 
-  Widget yesNoArea() {
-    return Row(
-      children: <Widget>[questionButton("Ja!"), questionButton("Nein!")],
-    );
+  Widget yesNoArea(List<ChatMessageModel> chatMessageModel) {
+
+    List<Widget> widgets = new List<Widget>();
+    var suggestions = chatMessageModel?.last?.suggestions;
+    suggestions?.forEach((x) => widgets.add(questionButton(x)));
+
+
+    return Wrap(
+        children: widgets
+      );
   }
 
-  Widget questionButton(text) => Expanded(
-        child: Padding(
+  Widget questionButton(text) =>
+        Padding(
           padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
           child: MaterialButton(
               color: ThemeColors.darkgrey,
               child: Text(text, style: TextStyle(color: Colors.white),),
               onPressed: () => sendMessage(text)),
-        ),
-      );
+        );
 
   @override
   Widget build(BuildContext context) {
@@ -94,7 +99,7 @@ class ChatState extends State<Chat> {
         keyboardType: TextInputType.multiline,
         decoration: InputDecoration(hintText: "Send message..."));
 
-    var streamBuilder = new StreamBuilder(
+    var streamBuilder = new StreamBuilder<List<ChatMessageModel>>(
         stream: chatBloc.outCurrentBloc,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           switch (snapshot.connectionState) {
@@ -111,13 +116,15 @@ class ChatState extends State<Chat> {
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 40)));
               } else
-                return createListView(context, snapshot);
+                return Column(children: <Widget>[
+                  Expanded(child: createListView(context, snapshot)),
+                  yesNoArea(snapshot.data),
+                ]);
           }
         });
 
     return Column(children: <Widget>[
       Expanded(child: streamBuilder),
-      yesNoArea(),
       Row(
         children: <Widget>[
           Flexible(
