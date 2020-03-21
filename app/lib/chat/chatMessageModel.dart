@@ -5,8 +5,15 @@ class ChatMessageModel {
   String date;
   bool fromApp;
   String videoUrl;
+  List<String> suggestions;
 
-  ChatMessageModel({this.messageId, this.chatId, this.message, this.date, this.fromApp, this.videoUrl});
+  ChatMessageModel({this.messageId,
+    this.chatId,
+    this.message,
+    this.date,
+    this.fromApp,
+    this.videoUrl,
+    this.suggestions});
 
   factory ChatMessageModel.fromJson(json) {
     ChatMessageModel chatMessage = ChatMessageModel(
@@ -15,7 +22,8 @@ class ChatMessageModel {
         message: json["message"],
         date: json["date"],
         fromApp: json["fromApp"],
-        videoUrl: json["videoUrl"]);
+        videoUrl: json["videoUrl"],
+        suggestions: json["suggestions"]);
 
     return chatMessage;
   }
