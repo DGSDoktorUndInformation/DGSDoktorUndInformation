@@ -1,3 +1,4 @@
+import 'package:dsgdoctor/userProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,10 +20,20 @@ class DashboardState extends State<Dashboard> {
     return Scaffold(
       backgroundColor: ThemeColors.Primary,
       appBar: AppBar(
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+
+            onPressed: (){
+              Navigator.push(context,MaterialPageRoute(builder: (context) => UserProfile()));
+            },
+          )
+
+        ],
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: AppBarContent(),
-        backgroundColor: ThemeColors.Primary,
+        backgroundColor: ThemeColors.appBar,
       ),
       body: SingleChildScrollView(
         child: Column(
