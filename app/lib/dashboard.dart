@@ -19,14 +19,33 @@ class DashboardState extends State<Dashboard> {
     return Scaffold(
       backgroundColor: ThemeColors.Primary,
       appBar: AppBar(
+        centerTitle: true,
+        automaticallyImplyLeading: false,
         title: AppBarContent(),
         backgroundColor: ThemeColors.Primary,
       ),
-      body: GridView.count(
-        padding: EdgeInsets.all(12),
-        children: dashboardActions(context),
-        crossAxisSpacing: 12,
-        crossAxisCount: 2,
+      body: SingleChildScrollView(
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: MediaQuery.of(context).size.height - 300,
+              child: GridView.count(
+                shrinkWrap: true,
+                padding: EdgeInsets.all(12),
+                children: dashboardActions(context),
+                crossAxisSpacing: 20,
+                mainAxisSpacing: 20,
+                crossAxisCount: 2,
+                childAspectRatio: MediaQuery.of(context).size.width /
+                    (MediaQuery.of(context).size.height / 3),
+              ),
+            ),
+            Padding(
+              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              child: Image.asset("assets/slogan.png"),
+            )
+          ],
+        ),
       ),
     );
   }
@@ -41,7 +60,19 @@ class DashboardState extends State<Dashboard> {
         },
       ),
       DashboardButton(
-        child: Text("Hallo"),
+        child: Text("Aktuelles zum Corona-Virus"),
+        onPressed: () {},
+      ),
+      DashboardButton(
+        child: Text("COVID-19 Selbstdiagnose"),
+        onPressed: () {},
+      ),
+      DashboardButton(
+        child: Text("Einstellungen"),
+        onPressed: () {},
+      ),
+      DashboardButton(
+        child: Text("PDF-Anleitung"),
         onPressed: () {},
       ),
     ];

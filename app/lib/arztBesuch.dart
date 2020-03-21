@@ -14,6 +14,8 @@ class ArztBesuchState extends State<ArztBesuch> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+            centerTitle: true,
+            automaticallyImplyLeading: false,
             title: AppBarContent(),
             leading: IconButton(
                 onPressed: () => Navigator.pop(context),
