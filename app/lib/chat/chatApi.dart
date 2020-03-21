@@ -13,6 +13,9 @@ class ChatApi {
   }
 
   readChats(String chatId, int page) async {
+    var chatMessageModel = ChatMessageModel.builder(chatId, "Wie ist ihr Fieber?", DateTime.now().toIso8601String());
+    chatMessageModel.suggestions = ["30ssssssssssssssssssssssssssss", "40", "50", "60", "70", "80", "90"];
+    chats.add(chatMessageModel);
     return chats;
   }
 
