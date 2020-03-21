@@ -33,7 +33,7 @@ class DashboardState extends State<Dashboard> {
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: AppBarContent(),
-        backgroundColor: ThemeColors.Primary,
+        backgroundColor: ThemeColors.appBar,
       ),
       body: SingleChildScrollView(
         child: Column(

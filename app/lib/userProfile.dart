@@ -1,4 +1,5 @@
 import 'package:dsgdoctor/appBarContent.dart';
+import 'package:dsgdoctor/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -14,10 +15,14 @@ class UserProfileState extends State<UserProfile> {
   Widget build(BuildContext context) {
 
     return Scaffold(
+        backgroundColor: ThemeColors.Primary,
         appBar: AppBar(
+            backgroundColor: ThemeColors.Primary,
             actions: <Widget>[
+
               IconButton(
-                icon: Icon(Icons.done),
+                icon: Icon(Icons.done, color: ThemeColors.Icon,),
+
                 tooltip: "Speichern",
                 //onPressed: () async => onSave(context),
               )
@@ -28,7 +33,8 @@ class UserProfileState extends State<UserProfile> {
             title: AppBarContent(),
             leading: IconButton(
                 onPressed: () => Navigator.pop(context),
-                icon: Icon(Icons.arrow_back),
+                icon: Icon(Icons.arrow_back, color: ThemeColors.Icon,),
+
                 tooltip: 'Zurück')),
 
         body:
