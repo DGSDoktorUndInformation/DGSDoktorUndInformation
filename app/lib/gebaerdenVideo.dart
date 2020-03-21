@@ -1,28 +1,37 @@
 import 'package:dsgdoctor/appBarContent.dart';
 import 'package:dsgdoctor/colors.dart';
-import 'package:dsgdoctor/videos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
 class GebaerdenVideo extends StatelessWidget {
+  String videoUrl;
+
+  GebaerdenVideo(this.videoUrl);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Video Player Demo',
-      home: VideoPlayerScreen(),
+      home: VideoPlayerScreen(null, videoUrl),
     );
   }
 }
 
 class VideoPlayerScreen extends StatefulWidget {
-  VideoPlayerScreen({Key key}) : super(key: key);
+  String videoUrl;
+
+  VideoPlayerScreen(Key key, this.videoUrl) : super(key: key);
 
   @override
-  _VideoPlayerScreenState createState() => _VideoPlayerScreenState();
+  _VideoPlayerScreenState createState() => _VideoPlayerScreenState(videoUrl);
 }
 
 class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
+  String videoUrl;
+
+  _VideoPlayerScreenState(this.videoUrl);
+
   VideoPlayerController _controller;
   Future<void> _initializeVideoPlayerFuture;
   bool startedPlaying = false;
@@ -35,17 +44,12 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
     // offers several different constructors to play videos from assets, files,
     // or the internet.
     _controller = VideoPlayerController.network(
-     Videos.Sample,
+     videoUrl,
     );
 
     _initializeVideoPlayerFuture = _controller.initialize();
 
     super.initState();
-
-    _controller.addListener(() {
-      if (startedPlaying && !_controller.value.isPlaying) {
-      }
-    });
   }
 
   @override
