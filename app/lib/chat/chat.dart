@@ -58,6 +58,7 @@ class ChatState extends State<Chat> {
               time: time,
               delivered: true,
               isMe: isMe,
+              videoUrl: chatMessages[index].videoUrl,
             ),
           ),
         );

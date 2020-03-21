@@ -1,3 +1,4 @@
+import 'package:dsgdoctor/corvidselbsttest/corvidselbsttest.dart';
 import 'package:dsgdoctor/gebaerdenVideo.dart';
 import 'package:dsgdoctor/userProfile.dart';
 import 'package:dsgdoctor/videos.dart';
@@ -78,7 +79,10 @@ class DashboardState extends State<Dashboard> {
       ),
       DashboardButton(
         text: "COVID-19 Selbstdiagnose",
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => CorvidSelbsttest()));
+        },
       ),
       DashboardButton(
         text: "PDF-Anleitung",

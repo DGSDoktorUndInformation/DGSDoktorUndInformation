@@ -10,6 +10,7 @@ class ChatBloc {
   StreamController<List<ChatMessageModel>> cmdstreamController =
   StreamController<List<ChatMessageModel>>.broadcast();
 
+
   Stream<List<ChatMessageModel>> get outCurrentBloc => streamController.stream;
   StreamSink get cmdCurrentBloc => cmdstreamController.sink;
 

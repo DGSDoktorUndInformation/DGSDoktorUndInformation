@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dsgdoctor/chat/chatMessageModel.dart';
 import 'package:dsgdoctor/config.dart';
 import 'package:dsgdoctor/profile/profile.dart';
+import 'package:dsgdoctor/videos.dart';
 import 'package:http/http.dart' as http;
 
 class ChatApi {
@@ -13,8 +14,10 @@ class ChatApi {
   }
 
   readChats(String chatId, int page) async {
-    var chatMessageModel = ChatMessageModel.builder(chatId, "Wie ist ihr Fieber?", DateTime.now().toIso8601String());
-    chatMessageModel.suggestions = ["30ssssssssssssssssssssssssssss", "40", "50", "60", "70", "80", "90"];
+    var chatMessageModel = ChatMessageModel.builder(chatId, "Wie hoch ist Ihre Temparatur?", DateTime.now().toIso8601String());
+    chatMessageModel.suggestions = ["35°", "36°", "37°", "38°", "39°", "40°", "50°"];
+    chatMessageModel.videoUrl = Videos.Fieber;
+    chatMessageModel.fromApp = false;
     chats.add(chatMessageModel);
     return chats;
   }
