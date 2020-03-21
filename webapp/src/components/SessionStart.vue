@@ -37,7 +37,7 @@
         methods: {
             submit() {
                 if(this.sessionkey) {
-                axios.get("http://localhost:8080/session/"+this.sessionkey).then(response => console.log(response.data))
+                axios.get("/session/"+this.sessionkey).then(response => console.log(response.data))
             }}
 
         }
