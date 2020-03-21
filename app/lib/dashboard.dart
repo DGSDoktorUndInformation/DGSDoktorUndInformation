@@ -1,5 +1,6 @@
 import 'package:dsgdoctor/gebaerdenVideo.dart';
 import 'package:dsgdoctor/userProfile.dart';
+import 'package:dsgdoctor/videos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -87,7 +88,14 @@ class DashboardState extends State<Dashboard> {
         text: "Gebärdensprachenvideo",
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => GebaerdenVideo()));
+              context, MaterialPageRoute(builder: (context) => GebaerdenVideo(Videos.Sample)));
+        },
+      ),
+      DashboardButton(
+        text: "Gebärdensprachenvideo2",
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => GebaerdenVideo(Videos.Sample2)));
         },
       ),
     ];
