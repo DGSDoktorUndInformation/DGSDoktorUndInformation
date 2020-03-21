@@ -67,7 +67,7 @@ class ChatState extends State<Chat> {
 
   Widget yesNoArea() {
     return Row(
-      children: <Widget>[questionButton("Ja"), questionButton("Nein")],
+      children: <Widget>[questionButton("Ja!"), questionButton("Nein!")],
     );
   }
 
@@ -76,7 +76,7 @@ class ChatState extends State<Chat> {
           padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
           child: MaterialButton(
               color: ThemeColors.darkgrey,
-              child: Text(text),
+              child: Text(text, style: TextStyle(color: Colors.white),),
               onPressed: () => sendMessage(text)),
         ),
       );

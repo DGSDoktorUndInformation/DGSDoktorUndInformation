@@ -4,8 +4,9 @@ class ChatMessageModel {
   String message;
   String date;
   bool fromApp;
+  String videoUrl;
 
-  ChatMessageModel({this.messageId, this.chatId, this.message, this.date, this.fromApp});
+  ChatMessageModel({this.messageId, this.chatId, this.message, this.date, this.fromApp, this.videoUrl});
 
   factory ChatMessageModel.fromJson(json) {
     ChatMessageModel chatMessage = ChatMessageModel(
@@ -13,7 +14,8 @@ class ChatMessageModel {
         chatId: json["chatId"],
         message: json["message"],
         date: json["date"],
-        fromApp: json["fromApp"]);
+        fromApp: json["fromApp"],
+        videoUrl: json["videoUrl"]);
 
     return chatMessage;
   }
