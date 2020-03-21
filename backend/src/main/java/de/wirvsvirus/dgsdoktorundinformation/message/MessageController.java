@@ -24,12 +24,12 @@ public class MessageController  {
 		hustenOptionen.add("trocken");
 		hustenOptionen.add("schmerzhaft");
 		hustenOptionen.add("lange andauernd");
-		messages.add(createMessage("Beschreiben sie Ihren Husten","descHustenId",hustenOptionen));
+		messages.add(createMessage("Beschreiben sie Ihren Husten.","descHustenId",hustenOptionen));
 		Collection<String> jaNeinOptionen = new ArrayList<>() ;
 		jaNeinOptionen.add("Ja");
 		jaNeinOptionen.add("Nein");
-		messages.add(createMessage("Haben Sie Husten","askHustenId",jaNeinOptionen  ));
-		messages.add(createMessage("Wie oft husten Sie","numberHustenId",new ArrayList<>()));
+		messages.add(createMessage("Haben Sie Husten?","askHustenId",jaNeinOptionen  ));
+		messages.add(createMessage("Wie oft husten Sie?","numberHustenId",new ArrayList<>()));
 
 		MessageListResponse response = new MessageListResponse();
 		for (Message message : messages) {

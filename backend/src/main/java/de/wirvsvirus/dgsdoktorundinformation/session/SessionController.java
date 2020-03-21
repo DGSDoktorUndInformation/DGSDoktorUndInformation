@@ -32,12 +32,12 @@ public class SessionController {
 		return sessionResponse;
 	}
 	
-	@GetMapping("/session/{partientenCode}")
+	@GetMapping("/session/{patientenCode}")
 	@ResponseBody
-	public SessionResponse loadSession( @PathVariable String partientenCode) {
+	public SessionResponse loadSession( @PathVariable String patientenCode) {
 		//  Load Session with SessionId
 		SessionResponse sessionResponse = new SessionResponse();
-		sessionResponse.setPatientenCode(partientenCode);
+		sessionResponse.setPatientenCode(patientenCode);
 		sessionResponse.setPatientenName("Lemmy Kilmister");
 		Person kontaktPerson = new Person();
 		kontaktPerson.setVorname("James");
@@ -47,13 +47,13 @@ public class SessionController {
 		return sessionResponse;
 	}
 	
-	@PostMapping("/session/{partientenCode}/message")
-	public void postMessage(@RequestBody Message message, @PathVariable String partientenCode) {
-		System.out.println("Storing Message " + message.getNachrichtenText() + " to Session "+partientenCode);
+	@PostMapping("/session/{patientenCode}/message")
+	public void postMessage(@RequestBody Message message, @PathVariable String patientenCode) {
+		System.out.println("Storing Message " + message.getNachrichtenText() + " to Session "+patientenCode);
 	}
 	
-	@GetMapping("/session/{partientenCode}/message")
-	public MessageResponse getLastMessage(@PathVariable String partientenCode) {
+	@GetMapping("/session/{patientenCode}/message")
+	public MessageResponse getLastMessage(@PathVariable String patientenCode) {
 		ArrayList<String> hustenOptionen = new ArrayList<>();
 		hustenOptionen.add("trocken");
 		hustenOptionen.add("schmerzhaft");
