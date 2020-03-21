@@ -1,26 +1,53 @@
+import 'dart:convert';
+
 import 'package:dsgdoctor/appBarContent.dart';
 import 'package:dsgdoctor/colors.dart';
 import 'package:dsgdoctor/date2String.dart';
+import 'package:dsgdoctor/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserProfile extends StatefulWidget {
+  Profile profile;
+
+  UserProfile(this.profile);
+
   @override
   State<StatefulWidget> createState() {
-    return UserProfileState();
+    return UserProfileState(profile: profile);
   }
 }
 
 class UserProfileState extends State<UserProfile> {
   TextEditingController dateController = new TextEditingController();
+  TextEditingController nameController = new TextEditingController();
+  TextEditingController contactNameController = new TextEditingController();
+  TextEditingController contactPhoneNumberController = new TextEditingController();
+  Profile profile;
+
+  UserProfileState({this.profile});
 
   var birthday;
 
-  getProfileValues(){
-
+  fillValues(){
+    print(this.profile.name);
+    //nameController.text = this.profile.name;
+   // dateController.text = this.profile.birthday.toString();
+   // contactNameController.text = this.profile.contactName;
+  //  contactPhoneNumberController.text = this.profile.contactTelephone;
   }
 
-  saveProfileValues(){
+  saveProfileValues() async{
+    final prefs = await SharedPreferences.getInstance();
+
+
+    this.profile.name = nameController.text;
+    this.profile.contactName = contactNameController.text;
+    this.profile.contactTelephone = contactPhoneNumberController.text;
+
+    prefs.setString("profile",this.profile.toJson().toString());
 
   }
 
@@ -30,10 +57,13 @@ class UserProfileState extends State<UserProfile> {
 
     TextStyle textStyle = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
 
+    fillValues();
+
     dateController.text = "";
 
     var nameField = TextField(
       style: textStyle,
+      controller: nameController,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
@@ -43,20 +73,26 @@ class UserProfileState extends State<UserProfile> {
     );
 
     var contactNameField = TextField(
+      controller: contactNameController,
       style: textStyle,
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        hintText: "Kontaktperson",
+        hintText: "Name",
       ),
     );
 
     var contactNumberField = TextField(
+      controller: contactPhoneNumberController,
       style: textStyle,
+      keyboardType: TextInputType.number,
+      inputFormatters: <TextInputFormatter>[
+        WhitelistingTextInputFormatter.digitsOnly
+      ],
       decoration: InputDecoration(
         fillColor: Colors.white,
         filled: true,
-        hintText: "Kontaktperson - Telefon",
+        hintText: "Telefon",
       ),
     );
 
@@ -72,7 +108,7 @@ class UserProfileState extends State<UserProfile> {
 
           if (dateTime != null) {
             dateController.text = convertDateToString(dateTime);
-            birthday = dateTime;
+            this.profile.birthday = dateTime;
           }
         },
         readOnly: true,
@@ -102,7 +138,9 @@ class UserProfileState extends State<UserProfile> {
                   Icons.done,
                   color: ThemeColors.Icon,
                 ),
-                onPressed: () {
+                onPressed: () async{
+                  await saveProfileValues();
+                  Navigator.pop(context);
 
                 },
 

@@ -1,9 +1,14 @@
+import 'dart:convert';
+
 import 'package:dsgdoctor/corvidselbsttest/corvidselbsttest.dart';
 import 'package:dsgdoctor/gebaerdenVideo.dart';
+import 'package:dsgdoctor/news/newsPage.dart';
+import 'package:dsgdoctor/profile/profile.dart';
 import 'package:dsgdoctor/userProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:dsgdoctor/videos.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'appBarContent.dart';
 import 'arztBesuch.dart';
@@ -27,8 +32,25 @@ class DashboardState extends State<Dashboard> {
           IconButton(
             icon: Icon(Icons.settings),
 
-            onPressed: (){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => UserProfile()));
+            onPressed: () async {
+              var prefs  = await SharedPreferences.getInstance();
+              var myProfile;
+
+              String profileString = prefs.getString("profile");
+              print(profileString);
+
+              if(profileString != null){
+                myProfile = new Profile.fromJson(jsonDecode(profileString));
+              }
+              else{
+                myProfile = new Profile();
+              }
+              print(myProfile.toString());
+              Navigator.push(context, MaterialPageRoute(builder: (context) =>
+
+              UserProfile(myProfile)
+              )
+              );
             },
           )
 
@@ -42,7 +64,10 @@ class DashboardState extends State<Dashboard> {
         child: Column(
           children: <Widget>[
             Container(
-              height: MediaQuery.of(context).size.height - 300,
+              height: MediaQuery
+                  .of(context)
+                  .size
+                  .height - 300,
               child: GridView.count(
                 shrinkWrap: true,
                 padding: EdgeInsets.all(25),
@@ -50,8 +75,14 @@ class DashboardState extends State<Dashboard> {
                 crossAxisSpacing: 25,
                 mainAxisSpacing: 25,
                 crossAxisCount: 2,
-                childAspectRatio: MediaQuery.of(context).size.width /
-                    (MediaQuery.of(context).size.height / 3),
+                childAspectRatio: MediaQuery
+                    .of(context)
+                    .size
+                    .width /
+                    (MediaQuery
+                        .of(context)
+                        .size
+                        .height / 2),
               ),
             ),
             Padding(
@@ -75,7 +106,10 @@ class DashboardState extends State<Dashboard> {
       ),
       DashboardButton(
         text: "Aktuelles zum Corona-Virus",
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => NewsPage()));
+        },
       ),
       DashboardButton(
         text: "COVID-19 Selbstdiagnose",
@@ -84,28 +118,12 @@ class DashboardState extends State<Dashboard> {
               context, MaterialPageRoute(builder: (context) => CorvidSelbsttest()));
         },
       ),
-      DashboardButton(
-        text: "Einstellungen",
-        onPressed: () {},
-      ),
+
       DashboardButton(
         text: "PDF-Anleitung",
         onPressed: () {},
       ),
-      DashboardButton(
-        text: "Husten Video",
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => GebaerdenVideo(Videos.Husten)));
-        },
-      ),
-      DashboardButton(
-        text: "Fieber Video",
-        onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => GebaerdenVideo(Videos.Fieber)));
-        },
-      ),
+
     ];
   }
 }
