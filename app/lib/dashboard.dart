@@ -85,17 +85,17 @@ class DashboardState extends State<Dashboard> {
         onPressed: () {},
       ),
       DashboardButton(
-        text: "Gebärdensprachenvideo",
+        text: "Husten Video",
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => GebaerdenVideo(Videos.Sample)));
+              context, MaterialPageRoute(builder: (context) => GebaerdenVideo(Videos.Husten)));
         },
       ),
       DashboardButton(
-        text: "Gebärdensprachenvideo2",
+        text: "Fieber Video",
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => GebaerdenVideo(Videos.Sample2)));
+              context, MaterialPageRoute(builder: (context) => GebaerdenVideo(Videos.Fieber)));
         },
       ),
     ];
