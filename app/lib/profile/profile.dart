@@ -5,7 +5,7 @@ class Profile {
   String contactName;
   String contactTelephone;
 
-  Profile() {}
+  Profile();
 
   Profile.fromJson(Map<String, dynamic> json) :
         name = json["name"],

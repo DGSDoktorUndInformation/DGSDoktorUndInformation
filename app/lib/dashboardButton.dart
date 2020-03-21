@@ -22,7 +22,7 @@ class DashboardButton extends MaterialButton {
     FocusNode focusNode,
     bool autofocus = false,
     MaterialTapTargetSize materialTapTargetSize,
-    @required Widget child,
+    @required String text,
   }) : super(
     key: key,
     onPressed: onPressed,
@@ -44,7 +44,7 @@ class DashboardButton extends MaterialButton {
     focusNode: focusNode,
     autofocus: autofocus,
     materialTapTargetSize: materialTapTargetSize,
-    child: child,
+    child: Center(child: Text(text, textAlign: TextAlign.center)),
   );
 
   @override
