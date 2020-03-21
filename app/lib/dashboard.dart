@@ -1,9 +1,9 @@
 import 'package:dsgdoctor/corvidselbsttest/corvidselbsttest.dart';
 import 'package:dsgdoctor/gebaerdenVideo.dart';
 import 'package:dsgdoctor/userProfile.dart';
-import 'package:dsgdoctor/videos.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:dsgdoctor/videos.dart';
 
 import 'appBarContent.dart';
 import 'arztBesuch.dart';
@@ -45,17 +45,17 @@ class DashboardState extends State<Dashboard> {
               height: MediaQuery.of(context).size.height - 300,
               child: GridView.count(
                 shrinkWrap: true,
-                padding: EdgeInsets.all(12),
+                padding: EdgeInsets.all(25),
                 children: dashboardActions(context),
-                crossAxisSpacing: 20,
-                mainAxisSpacing: 20,
+                crossAxisSpacing: 25,
+                mainAxisSpacing: 25,
                 crossAxisCount: 2,
                 childAspectRatio: MediaQuery.of(context).size.width /
                     (MediaQuery.of(context).size.height / 3),
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(20, 0, 20, 0),
+              padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
               child: Image.asset("assets/slogan.png"),
             )
           ],
@@ -83,6 +83,10 @@ class DashboardState extends State<Dashboard> {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => CorvidSelbsttest()));
         },
+      ),
+      DashboardButton(
+        text: "Einstellungen",
+        onPressed: () {},
       ),
       DashboardButton(
         text: "PDF-Anleitung",

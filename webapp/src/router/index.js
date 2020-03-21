@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Faq from "../views/Faq";
+import AnleitungAerzte from "../views/AnleitungAerzte";
 
 Vue.use(VueRouter)
 
@@ -10,6 +11,11 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home
+  },
+  {
+    path: '/anleitung-aerzte',
+    name: 'AnleitungAerzte',
+    component: AnleitungAerzte
   },
   {
     path: '/about',

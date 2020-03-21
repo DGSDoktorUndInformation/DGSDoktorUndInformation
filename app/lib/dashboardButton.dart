@@ -44,7 +44,7 @@ class DashboardButton extends MaterialButton {
     focusNode: focusNode,
     autofocus: autofocus,
     materialTapTargetSize: materialTapTargetSize,
-    child: Center(child: Text(text, textAlign: TextAlign.center)),
+    child: Center(child: Text(text, style: TextStyle(fontFamily: "Roboto", fontSize: 18), textAlign: TextAlign.center)),
   );
 
   @override
