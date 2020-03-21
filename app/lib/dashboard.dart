@@ -1,3 +1,4 @@
+import 'package:dsgdoctor/gebaerdenVideo.dart';
 import 'package:dsgdoctor/userProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -79,12 +80,15 @@ class DashboardState extends State<Dashboard> {
         onPressed: () {},
       ),
       DashboardButton(
-        text: "Einstellungen",
+        text: "PDF-Anleitung",
         onPressed: () {},
       ),
       DashboardButton(
-        text: "PDF-Anleitung",
-        onPressed: () {},
+        text: "Gebärdensprachenvideo",
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => GebaerdenVideo()));
+        },
       ),
     ];
   }
