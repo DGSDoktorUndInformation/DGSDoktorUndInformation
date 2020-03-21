@@ -53,26 +53,26 @@ class DashboardState extends State<Dashboard> {
   List<Widget> dashboardActions(BuildContext context) {
     return <Widget>[
       DashboardButton(
-        child: Text("Arztbesuch"),
+        text: "Arztbesuch",
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => ArztBesuch()));
         },
       ),
       DashboardButton(
-        child: Text("Aktuelles zum Corona-Virus"),
+        text: "Aktuelles zum Corona-Virus",
         onPressed: () {},
       ),
       DashboardButton(
-        child: Text("COVID-19 Selbstdiagnose"),
+        text: "COVID-19 Selbstdiagnose",
         onPressed: () {},
       ),
       DashboardButton(
-        child: Text("Einstellungen"),
+        text: "Einstellungen",
         onPressed: () {},
       ),
       DashboardButton(
-        child: Text("PDF-Anleitung"),
+        text: "PDF-Anleitung",
         onPressed: () {},
       ),
     ];
