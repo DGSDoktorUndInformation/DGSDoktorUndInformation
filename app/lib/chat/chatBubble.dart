@@ -16,30 +16,37 @@ class ChatBubble extends StatelessWidget {
     return Column(
       crossAxisAlignment: align,
       children: <Widget>[
-        Container(
-            padding: EdgeInsets.all(1.0),
-            margin: EdgeInsets.all(2.0),
-            decoration: BoxDecoration(
-                color: bg,
-                borderRadius: radius),
+        GestureDetector(
+            onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    content: Text("Hello"),
+                  );
+                }),
             child: Container(
-              margin: EdgeInsets.all(10),
-              child: Stack(
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.only(right: 48.0),
-                    child: Text(message),
-                  ),
-                  Positioned(
-                    bottom: 0.0,
-                    right: 0.0,
-                    child: Row(
-                      children: <Widget>[
-                        SizedBox(width: 3.0),
-                      ],
+              padding: EdgeInsets.all(1.0),
+              margin: EdgeInsets.all(2.0),
+              decoration: BoxDecoration(color: bg, borderRadius: radius),
+              child: Container(
+                margin: EdgeInsets.all(10),
+                child: Stack(
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.only(right: 48.0),
+                      child: Text(message),
                     ),
-                  )
-                ],
+                    Positioned(
+                      bottom: 0.0,
+                      right: 0.0,
+                      child: Row(
+                        children: <Widget>[
+                          SizedBox(width: 3.0),
+                        ],
+                      ),
+                    )
+                  ],
+                ),
               ),
             ))
       ],
