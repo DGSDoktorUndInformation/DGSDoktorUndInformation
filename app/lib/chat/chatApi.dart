@@ -1,5 +1,9 @@
+import 'dart:convert';
+
 import 'package:dsgdoctor/chat/chatMessageModel.dart';
+import 'package:dsgdoctor/config.dart';
 import 'package:dsgdoctor/profile/profile.dart';
+import 'package:http/http.dart' as http;
 
 class ChatApi {
   List<ChatMessageModel> chats;
@@ -19,7 +23,25 @@ class ChatApi {
   }
 
   Future<String> startSession(Profile profile) async {
+    Map<String, dynamic> json = {
+      "patient": {
+        "name": profile.name == null ? "" : profile.name
+      },
+      "kontaktPerson": {
+        "name": profile.contactName == null ? "" : profile.contactName,
+        "telefonNummer": profile.contactTelephone == null ? "" : profile.contactTelephone
+      }
+    };
+    var baseUrl = Config.baseUrl;
+
     return "4";
+    /*var response = await http.post("$baseUrl/session",
+        headers: {
+          "Content-type": "application/json"
+        },
+        body: jsonEncode(json));
+
+    return jsonDecode(response.body)["patientenCode"];*/
   }
 
 }

@@ -16,16 +16,18 @@ class ChatBubble extends StatelessWidget {
     return Column(
       crossAxisAlignment: align,
       children: <Widget>[
-        Container(
-            padding: EdgeInsets.all(1.0),
-            margin: EdgeInsets.all(2.0),
-            decoration: BoxDecoration(color: bg, borderRadius: radius),
-            child: GestureDetector(
-              onTap: () => showDialog(
-                  context: context,
-                  builder: (BuildContext context) {
-                    return Text("");
-                  }),
+        GestureDetector(
+            onTap: () => showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    content: Text("Hello"),
+                  );
+                }),
+            child: Container(
+              padding: EdgeInsets.all(1.0),
+              margin: EdgeInsets.all(2.0),
+              decoration: BoxDecoration(color: bg, borderRadius: radius),
               child: Container(
                 margin: EdgeInsets.all(10),
                 child: Stack(
