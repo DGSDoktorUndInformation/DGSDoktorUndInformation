@@ -1,14 +1,13 @@
 import 'dart:convert';
 
 import 'package:dsgdoctor/corvidselbsttest/corvidselbsttest.dart';
-import 'package:dsgdoctor/gebaerdenVideo.dart';
 import 'package:dsgdoctor/news/newsPage.dart';
 import 'package:dsgdoctor/profile/profile.dart';
 import 'package:dsgdoctor/userProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:dsgdoctor/videos.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import 'appBarContent.dart';
 import 'arztBesuch.dart';
@@ -116,6 +115,12 @@ class DashboardState extends State<Dashboard> {
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => CorvidSelbsttest()));
+        },
+      ),
+      DashboardButton(
+        text: "116 117",
+        onPressed: () async {
+          await launch("https://www.116117.de/de/gebaerdensprache.php");
         },
       ),
 
