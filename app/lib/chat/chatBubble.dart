@@ -2,9 +2,9 @@ import 'package:dsgdoctor/videoplayer.dart';
 import 'package:flutter/material.dart';
 
 class ChatBubble extends StatelessWidget {
-  ChatBubble({this.message, this.time, this.delivered, this.isMe, this.videoUrl});
+  ChatBubble({this.message, this.delivered, this.isMe, this.videoUrl});
 
-  final String message, time, videoUrl;
+  final String message, videoUrl;
   final delivered, isMe;
 
   @override

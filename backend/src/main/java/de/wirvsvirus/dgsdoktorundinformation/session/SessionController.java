@@ -1,5 +1,6 @@
 package de.wirvsvirus.dgsdoktorundinformation.session;
 
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,12 +13,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+=======
+import java.time.LocalDateTime;
+import java.util.*;
+>>>>>>> branch 'master' of https://github.com/DGSDoktorUndInformation/DGSDoktorUndInformation.git
 
 import de.wirvsvirus.dgsdoktorundinformation.message.Message;
+<<<<<<< HEAD
+=======
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.*;
+>>>>>>> branch 'master' of https://github.com/DGSDoktorUndInformation/DGSDoktorUndInformation.git
 
 @RestController
 public class SessionController {
-	
+
 	private Map<String,Session> sessionStore = new HashMap<>();
 
 	@PostMapping("/session")
@@ -42,12 +52,12 @@ public class SessionController {
 		sessionResponse.setSelbstTest(session.getSelbstTest());
 		return sessionResponse;
 	}
-	
+
 	@GetMapping("/session/{patientenCode}")
 	@ResponseBody
 	public SessionResponse loadSession( @PathVariable String patientenCode) {
 		Session session = sessionStore.get(patientenCode);
-		
+
 		//  Load Session with SessionId
 		SessionResponse sessionResponse = new SessionResponse();
 		sessionResponse.setPatientenCode(patientenCode);
@@ -58,17 +68,20 @@ public class SessionController {
 		sessionResponse.add(WebMvcLinkBuilder.linkTo((WebMvcLinkBuilder.methodOn(SessionController.class)).loadSession(sessionResponse.getPatientenCode())).withSelfRel());
 		return sessionResponse;
 	}
-	
+
 	@PostMapping("/session/{patientenCode}/message")
 	public void postMessage(@RequestBody Message message, @PathVariable String patientenCode) {
+		message.setId(UUID.randomUUID());
+		message.setDate(LocalDateTime.now());
+
 		sessionStore.get(patientenCode).getMessages().add(message);
 		System.out.println(message.getVideoPfad());
 		System.out.println("Storing Message " + message.getNachrichtenText() + " to Session "+patientenCode);
 	}
-	
+
 	@GetMapping("/session/{patientenCode}/message")
 	public List<Message> getLastMessage(@PathVariable String patientenCode) {
 		return sessionStore.get(patientenCode).getMessages();
 	}
-	
+
 }
