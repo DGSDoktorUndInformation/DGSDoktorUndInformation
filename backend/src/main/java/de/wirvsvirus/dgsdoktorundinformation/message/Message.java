@@ -9,35 +9,18 @@ import lombok.Data;
 
 @Data
 public class Message {
-
-<<<<<<< HEAD
-	private boolean patient;
 	
-=======
 	private UUID id;
->>>>>>> branch 'master' of https://github.com/DGSDoktorUndInformation/DGSDoktorUndInformation.git
 	private String nachrichtenText;
 	private String videoPfad;
 	private boolean fromPatient;
 	private LocalDateTime date;
 	private Collection<String> antwortOptionen = new ArrayList<>();
-<<<<<<< HEAD
-	
-	public boolean isPatient() {
-		return patient;
+	public UUID getId() {
+		return id;
 	}
-	public void setPatient(boolean patient) {
-		this.patient = patient;
-	}
-
-	public Collection<String> getAntwortOptionen() {
-		return antwortOptionen;
-	}
-	public String getVideoPfad() {
-		return videoPfad;
-	}
-	public void setVideoPfad(String videoPfad) {
-		this.videoPfad = videoPfad;
+	public void setId(UUID id) {
+		this.id = id;
 	}
 	public String getNachrichtenText() {
 		return nachrichtenText;
@@ -45,8 +28,29 @@ public class Message {
 	public void setNachrichtenText(String nachrichtenText) {
 		this.nachrichtenText = nachrichtenText;
 	}
-	
-=======
+	public String getVideoPfad() {
+		return videoPfad;
+	}
+	public void setVideoPfad(String videoPfad) {
+		this.videoPfad = videoPfad;
+	}
+	public boolean isFromPatient() {
+		return fromPatient;
+	}
+	public void setFromPatient(boolean fromPatient) {
+		this.fromPatient = fromPatient;
+	}
+	public LocalDateTime getDate() {
+		return date;
+	}
+	public void setDate(LocalDateTime date) {
+		this.date = date;
+	}
+	public Collection<String> getAntwortOptionen() {
+		return antwortOptionen;
+	}
+	public void setAntwortOptionen(Collection<String> antwortOptionen) {
+		this.antwortOptionen = antwortOptionen;
+	}
 
->>>>>>> branch 'master' of https://github.com/DGSDoktorUndInformation/DGSDoktorUndInformation.git
 }

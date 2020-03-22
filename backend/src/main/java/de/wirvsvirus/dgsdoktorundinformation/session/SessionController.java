@@ -1,10 +1,11 @@
 package de.wirvsvirus.dgsdoktorundinformation.session;
 
-<<<<<<< HEAD
+import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.UUID;
 
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,17 +14,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-=======
-import java.time.LocalDateTime;
-import java.util.*;
->>>>>>> branch 'master' of https://github.com/DGSDoktorUndInformation/DGSDoktorUndInformation.git
 
 import de.wirvsvirus.dgsdoktorundinformation.message.Message;
-<<<<<<< HEAD
-=======
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.web.bind.annotation.*;
->>>>>>> branch 'master' of https://github.com/DGSDoktorUndInformation/DGSDoktorUndInformation.git
 
 @RestController
 public class SessionController {
