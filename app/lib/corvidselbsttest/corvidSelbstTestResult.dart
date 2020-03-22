@@ -10,7 +10,7 @@ import '../colors.dart';
 class CorvidSelbstTestResult extends StatelessWidget {
   CorvidSelbsttestModel corvidSelbsttestModel;
 
-  CorvidSelbstTestResult(CorvidSelbsttestModel this.corvidSelbsttestModel);
+  CorvidSelbstTestResult(this.corvidSelbsttestModel);
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class CorvidSelbstTestResult extends StatelessWidget {
     );
   }
 
-  setToLocalStorage() async {
+  Future<String> setToLocalStorage() async {
     var prefs = await SharedPreferences.getInstance();
 
     var json = corvidSelbsttestModel.getJson();
