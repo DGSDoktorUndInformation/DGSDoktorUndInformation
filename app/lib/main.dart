@@ -1,12 +1,7 @@
-import 'package:dsgdoctor/appBarContent.dart';
-import 'package:dsgdoctor/arztBesuch.dart';
-import 'package:dsgdoctor/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 
-
 import 'dashboard.dart';
-import 'dashboardButton.dart';
 
 void main() => runApp(MyApp());
 
@@ -24,11 +19,11 @@ class MyApp extends StatelessWidget {
         supportedLocales: [
           const Locale('de'),
         ],
-        theme: theme(),
+        theme: theme(context),
         home: Dashboard());
   }
 
-  ThemeData theme() {
+  ThemeData theme(context) {
     var color = Colors.blueGrey;
     return ThemeData(
 

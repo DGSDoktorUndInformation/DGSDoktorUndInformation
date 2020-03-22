@@ -1,7 +1,6 @@
 import 'package:dsgdoctor/chat/chatApi.dart';
 import 'package:dsgdoctor/chat/chatBloc.dart';
 import 'package:dsgdoctor/colors.dart';
-import 'package:dsgdoctor/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -67,8 +66,11 @@ class ChatState extends State<Chat> {
   Widget yesNoArea(List<ChatMessageModel> chatMessageModel) {
     List<Widget> widgets = new List<Widget>();
     chatMessageModel.sort((x, y) => y.date.compareTo(x.date));
-    var suggestions = chatMessageModel.firstWhere((x) => !x.fromApp).suggestions;
-    suggestions?.forEach((x) => widgets.add(questionButton(x)));
+    var firstWhere = chatMessageModel.firstWhere((x) => !x.fromApp, orElse: () => null);
+    if(firstWhere != null) {
+      var suggestions = firstWhere.suggestions;
+      suggestions?.forEach((x) => widgets.add(questionButton(x)));
+    }
 
     return Wrap(
         children: widgets
@@ -80,7 +82,7 @@ class ChatState extends State<Chat> {
           padding: const EdgeInsets.fromLTRB(5, 0, 5, 0),
           child: MaterialButton(
               color: ThemeColors.darkgrey,
-              child: Text(text, style: TextStyle(color: Colors.white),),
+              child: Text(text, style: TextStyle(color: Colors.white)),
               onPressed: () => sendMessage(text)),
         );
 
@@ -95,7 +97,9 @@ class ChatState extends State<Chat> {
         minLines: 1,
         maxLines: 10,
         keyboardType: TextInputType.multiline,
-        decoration: InputDecoration(hintText: "Send message..."));
+        style: new TextStyle(color: Colors.white),
+        decoration: InputDecoration(hintText: "Send message...",
+            hintStyle: new TextStyle(color: Colors.white)));
 
     var streamBuilder = new StreamBuilder<List<ChatMessageModel>>(
         stream: chatBloc.outCurrentBloc,
@@ -107,11 +111,12 @@ class ChatState extends State<Chat> {
             default:
               print(snapshot);
               if (snapshot.hasError)
-                return new Text('Error: ${snapshot.error}');
+                return new Text('Error: ${snapshot.error}', style: TextStyle(color: Colors.white));
               else if (!snapshot.hasData) {
                 return Center(
                     child: Text("Sessionid: $sessionId",
                         style: TextStyle(
+                          color: Colors.white,
                             fontWeight: FontWeight.bold, fontSize: 40)));
               } else
                 return Column(children: <Widget>[
@@ -130,7 +135,7 @@ class ChatState extends State<Chat> {
                   padding: EdgeInsets.only(right: 10.0, left: 10.0),
                   child: messageTextField)),
           IconButton(
-            icon: new Icon(Icons.send),
+            icon: new Icon(Icons.send, color: Colors.white,),
             onPressed: () => sendMessage(messageController.text),
           )
         ],

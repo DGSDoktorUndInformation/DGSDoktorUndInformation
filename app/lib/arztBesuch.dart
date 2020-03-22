@@ -21,6 +21,7 @@ class ArztBesuchState extends State<ArztBesuch> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ThemeColors.Primary,
         appBar: AppBar(
           centerTitle: true,
           automaticallyImplyLeading: false,

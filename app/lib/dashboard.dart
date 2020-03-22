@@ -35,7 +35,7 @@ class DashboardState extends State<Dashboard> {
               var prefs  = await SharedPreferences.getInstance();
               var myProfile;
               String profileString = prefs.getString("profile");
- 
+
 
               print(profileString);
 
