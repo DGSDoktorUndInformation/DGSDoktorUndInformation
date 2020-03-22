@@ -8,5 +8,6 @@ class News{
   String text;
   DateTime timestamp;
   bool isVideo;
+  bool isEmbeddedVideo;
 
 }

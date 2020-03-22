@@ -1,4 +1,5 @@
 import 'package:dsgdoctor/news/news.dart';
+import 'package:dsgdoctor/videoplayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -34,7 +35,18 @@ newsTile(News news, BuildContext context) {
       color: Colors.white,
       child: GestureDetector(
           onTap: () async {
-            await launch(news.url);
+            if (news.isEmbeddedVideo) {
+             await showDialog(
+                 context: context,
+
+                 builder: (BuildContext context) {
+                   return AlertDialog(
+                     content: Videoplayer(news.url),
+                   );
+                 });
+            } else {
+              await launch(news.url);
+            }
           },
           child: Padding(
             padding: const EdgeInsets.fromLTRB(30, 20, 30, 20),
