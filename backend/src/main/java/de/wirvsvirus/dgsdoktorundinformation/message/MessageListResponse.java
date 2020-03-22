@@ -6,9 +6,9 @@ import java.util.List;
 
 public class MessageListResponse {
 
-	List<MessageResponse> message = new ArrayList<>();
+	List<Message> message = new ArrayList<>();
 	
-	public List<MessageResponse> getMessage() {
+	public List<Message> getMessage() {
 		return message;
 	}
 	

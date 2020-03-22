@@ -19,25 +19,32 @@ public class MessageController  {
 	public MessageListResponse findMessages( @RequestParam Collection<String> tag) {
 		
 		System.out.println(tag);
+		
 		Collection<Message> messages= new ArrayList<>();
-		ArrayList<String> hustenOptionen = new ArrayList<>();
-		hustenOptionen.add("trocken");
-		hustenOptionen.add("schmerzhaft");
-		hustenOptionen.add("lange andauernd");
-		messages.add(createMessage("Beschreiben sie Ihren Husten.","descHustenId",hustenOptionen));
-		Collection<String> jaNeinOptionen = new ArrayList<>() ;
-		jaNeinOptionen.add("Ja");
-		jaNeinOptionen.add("Nein");
-		messages.add(createMessage("Haben Sie Husten?","askHustenId",jaNeinOptionen  ));
-		messages.add(createMessage("Wie oft husten Sie?","numberHustenId",new ArrayList<>()));
+		if (tag.contains("Husten")) {
+			ArrayList<String> hustenOptionen = new ArrayList<>();
+			hustenOptionen.add("trocken");
+			hustenOptionen.add("schmerzhaft");
+			hustenOptionen.add("lange andauernd");
+			messages.add(createMessage("Beschreiben sie Ihren Husten.","https://cdn.jwplayer.com/videos/EKqICJKt-cqrEIsCv.mp4",hustenOptionen));
+			Collection<String> jaNeinOptionen = new ArrayList<>() ;
+			jaNeinOptionen.add("Ja");
+			jaNeinOptionen.add("Nein");
+			messages.add(createMessage("Haben Sie Husten?","https://cdn.jwplayer.com/videos/bQXjSCvU-3uRaWXX3.mp4",jaNeinOptionen  ));
+			messages.add(createMessage("Wie oft husten Sie?","https://cdn.jwplayer.com/videos/1MMzOy95-cqrEIsCv.mp4",new ArrayList<>()));
+		}
+		if (tag.contains("Fieber")) {
+			messages.add(createMessage("Wie hoch war das Fieber?","https://cdn.jwplayer.com/videos/ZHj6MOWJ-3uRaWXX3.mp4",new ArrayList<>()));
+			Collection<String> jaNeinOptionen = new ArrayList<>() ;
+			jaNeinOptionen.add("Ja");
+			jaNeinOptionen.add("Nein");
+
+			messages.add(createMessage("Haben Sie Fieber gemessen?","https://cdn.jwplayer.com/videos/8VGLDEUN-cqrEIsCv.mp",jaNeinOptionen));
+		}
 
 		MessageListResponse response = new MessageListResponse();
 		for (Message message : messages) {
-			MessageResponse messageResponse = new MessageResponse();
-			messageResponse.setNachrichtenText(message.getNachrichtenText());
-			messageResponse.getAntwortOptionen().addAll(message.getAntwortOptionen());
-			messageResponse.add(WebMvcLinkBuilder.linkTo((WebMvcLinkBuilder.methodOn(VideoController.class)).showVideo(message.getVideoPfad())).withSelfRel());
-			response.getMessage().add(messageResponse);
+			response.getMessage().add(message);
 		}
 		return response;
 	}
