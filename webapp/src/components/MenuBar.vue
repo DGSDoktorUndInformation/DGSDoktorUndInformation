@@ -7,7 +7,7 @@
             dark
     >
         <!--  TODO nerviger Button, ander Loesung finden   -->
-        <v-btn  text to="/Home"><v-toolbar-title >
+        <v-btn  text to="/"><v-toolbar-title >
             DGSDocInfo
         </v-toolbar-title>
         </v-btn>

@@ -9,13 +9,13 @@ class Profile {
 
   Profile.fromJson(Map<String, dynamic> json) :
         name = json["name"],
-        birthday = json["birthday"],
+        birthday = DateTime.parse(json["birthday"]),
         contactName = json["contactName"],
         contactTelephone = json["contactTelephone"];
 
   Map<String, dynamic> toJson() => {
     "name": name,
-    "birthday": birthday,
+    "birthday": birthday?.toIso8601String(),
     "contactName": contactName,
     "contactTelephone": contactTelephone
   };

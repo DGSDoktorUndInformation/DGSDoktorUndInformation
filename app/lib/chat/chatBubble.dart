@@ -1,9 +1,10 @@
+import 'package:dsgdoctor/videoplayer.dart';
 import 'package:flutter/material.dart';
 
 class ChatBubble extends StatelessWidget {
-  ChatBubble({this.message, this.time, this.delivered, this.isMe});
+  ChatBubble({this.message, this.time, this.delivered, this.isMe, this.videoUrl});
 
-  final String message, time;
+  final String message, time, videoUrl;
   final delivered, isMe;
 
   @override
@@ -17,13 +18,13 @@ class ChatBubble extends StatelessWidget {
       crossAxisAlignment: align,
       children: <Widget>[
         GestureDetector(
-            onTap: () => showDialog(
+            onTap: () => videoUrl != null ? showDialog(
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    content: Text("Hello"),
+                    content: Videoplayer(videoUrl),
                   );
-                }),
+                }) : {},
             child: Container(
               padding: EdgeInsets.all(1.0),
               margin: EdgeInsets.all(2.0),
