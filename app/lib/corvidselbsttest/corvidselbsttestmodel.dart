@@ -5,6 +5,7 @@ class CorvidSelbsttestModel {
 
   CorvidSelbsttestModel() {
     answers = new Map<String, String>();
+    answers["datum"] = DateTime.now().toIso8601String();
   }
 
   addAnswer(String question, String answer) {

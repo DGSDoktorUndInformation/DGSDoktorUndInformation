@@ -5,6 +5,7 @@ import 'package:dsgdoctor/config.dart';
 import 'package:dsgdoctor/profile/profile.dart';
 import 'package:dsgdoctor/videos.dart';
 import 'package:http/http.dart' as http;
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ChatApi {
   List<ChatMessageModel> chats;
@@ -29,6 +30,9 @@ class ChatApi {
   }
 
   Future<String> startSession(Profile profile) async {
+    var prefs = await SharedPreferences.getInstance();
+    String selbsttest = prefs.getString("selbsttest");
+
     Map<String, dynamic> json = {
       "patient": {
         "name": profile.name == null ? "" : profile.name
@@ -36,7 +40,8 @@ class ChatApi {
       "kontaktPerson": {
         "name": profile.contactName == null ? "" : profile.contactName,
         "telefonNummer": profile.contactTelephone == null ? "" : profile.contactTelephone
-      }
+      },
+      "selbsttest": selbsttest
     };
     var baseUrl = Config.baseUrl;
 
