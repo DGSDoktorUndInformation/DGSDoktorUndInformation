@@ -7,6 +7,7 @@
                             lazy-validation
                             ref="form"
                             v-model="valid"
+                            @submit="submit"
                     >
                         <v-text-field
                                 :rules="sessionkeyRules"
