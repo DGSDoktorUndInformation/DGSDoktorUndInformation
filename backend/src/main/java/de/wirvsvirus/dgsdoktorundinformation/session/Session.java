@@ -1,7 +1,9 @@
 package de.wirvsvirus.dgsdoktorundinformation.session;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,6 +21,16 @@ public class Session {
 	private Person kontaktPerson;
 	
 	private Person patient;
+	
+	private Map<String, String> selbstTest;
+
+	public Map<String, String> getSelbstTest() {
+		return selbstTest;
+	}
+
+	public void setSelbstTest(Map<String, String> selbstTest) {
+		this.selbstTest = selbstTest;
+	}
 
 	public Person getPatient() {
 		return patient;

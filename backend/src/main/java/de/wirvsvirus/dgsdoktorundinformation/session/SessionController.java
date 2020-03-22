@@ -1,25 +1,19 @@
 package de.wirvsvirus.dgsdoktorundinformation.session;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
-
-import javax.websocket.server.PathParam;
 
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.wirvsvirus.dgsdoktorundinformation.message.Message;
-import de.wirvsvirus.dgsdoktorundinformation.video.VideoController;
 
 @RestController
 public class SessionController {
@@ -35,6 +29,8 @@ public class SessionController {
 		Session session = new Session();
 		session.setKontaktPerson(sessionRequest.getKontaktPerson());
 		session.setPatient(sessionRequest.getPatient());
+		session.setSelbstTest(sessionRequest.getSelbstTest());
+		
 
 		sessionStore.put(patientenCode,session);
 		//Session persistieren
@@ -43,6 +39,7 @@ public class SessionController {
 		sessionResponse.add(WebMvcLinkBuilder.linkTo((WebMvcLinkBuilder.methodOn(SessionController.class)).loadSession(sessionResponse.getPatientenCode())).withSelfRel());
 		sessionResponse.setKontaktPerson(session.getKontaktPerson());
 		sessionResponse.setPatient(session.getPatient());
+		sessionResponse.setSelbstTest(session.getSelbstTest());
 		return sessionResponse;
 	}
 	
@@ -57,6 +54,7 @@ public class SessionController {
 		sessionResponse.setPatient(session.getPatient());
 		Person kontaktPerson = session.getKontaktPerson();
 		sessionResponse.setKontaktPerson(kontaktPerson );
+		sessionResponse.setSelbstTest(session.getSelbstTest());
 		sessionResponse.add(WebMvcLinkBuilder.linkTo((WebMvcLinkBuilder.methodOn(SessionController.class)).loadSession(sessionResponse.getPatientenCode())).withSelfRel());
 		return sessionResponse;
 	}
