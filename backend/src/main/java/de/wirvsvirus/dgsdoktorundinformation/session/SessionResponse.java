@@ -1,29 +1,42 @@
 package de.wirvsvirus.dgsdoktorundinformation.session;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.hateoas.RepresentationModel;
 
 public class SessionResponse extends RepresentationModel<SessionResponse>{
 	
 	private String patientenCode;
 	
-	private String patientenName;
-	
-	private Person kontaktPerson;
+	private Person patient;
 
+	private Person kontaktPerson;
+	
+	private Map<String, String> selbstTest;
+
+	public Map<String, String> getSelbstTest() {
+		return selbstTest;
+	}
+
+	public void setSelbstTest(Map<String, String> selbstTest) {
+		this.selbstTest = selbstTest;
+	}
+
+	public Person getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Person patient) {
+		this.patient = patient;
+	}
+	
 	public Person getKontaktPerson() {
 		return kontaktPerson;
 	}
 
 	public void setKontaktPerson(Person kontaktPerson) {
 		this.kontaktPerson = kontaktPerson;
-	}
-
-	public String getPatientenName() {
-		return patientenName;
-	}
-
-	public void setPatientenName(String patientenName) {
-		this.patientenName = patientenName;
 	}
 
 	public String getPatientenCode() {

@@ -9,7 +9,7 @@ import lombok.Data;
 
 @Data
 public class Message {
-
+	
 	private UUID id;
 	private String nachrichtenText;
 	private String videoPfad;

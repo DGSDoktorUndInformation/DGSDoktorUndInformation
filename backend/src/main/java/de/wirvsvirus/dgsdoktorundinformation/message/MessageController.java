@@ -21,7 +21,8 @@ public class MessageController  {
 		System.out.println(tag);
 		
 		Collection<Message> messages= new ArrayList<>();
-		if (tag.contains("Husten")) {
+		
+		if (tag.stream().anyMatch(t -> t.toUpperCase().equals("HUSTEN"))) {
 			ArrayList<String> hustenOptionen = new ArrayList<>();
 			hustenOptionen.add("trocken");
 			hustenOptionen.add("schmerzhaft");
@@ -33,7 +34,7 @@ public class MessageController  {
 			messages.add(createMessage("Haben Sie Husten?","https://cdn.jwplayer.com/videos/bQXjSCvU-3uRaWXX3.mp4",jaNeinOptionen  ));
 			messages.add(createMessage("Wie oft husten Sie?","https://cdn.jwplayer.com/videos/1MMzOy95-cqrEIsCv.mp4",new ArrayList<>()));
 		}
-		if (tag.contains("Fieber")) {
+		if (tag.stream().anyMatch(t -> t.toUpperCase().equals("FIEBER"))) {
 			messages.add(createMessage("Wie hoch war das Fieber?","https://cdn.jwplayer.com/videos/ZHj6MOWJ-3uRaWXX3.mp4",new ArrayList<>()));
 			Collection<String> jaNeinOptionen = new ArrayList<>() ;
 			jaNeinOptionen.add("Ja");

@@ -1,11 +1,24 @@
 package de.wirvsvirus.dgsdoktorundinformation.session;
 
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.UUID;
+
+import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import de.wirvsvirus.dgsdoktorundinformation.message.Message;
-import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
-import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class SessionController {
@@ -14,21 +27,25 @@ public class SessionController {
 
 	@PostMapping("/session")
 	@ResponseBody
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public SessionResponse createSession(@RequestBody SessionRequest sessionRequest) {
 		Random random = new Random();
 		String patientenCode = Integer.toHexString(random.nextInt(100000));
-
+		
 		Session session = new Session();
-		Person kontaktPerson = new Person();
-		kontaktPerson.setVorname("James");
-		kontaktPerson.setName("Hetfield");
-		session.setKontaktPerson(kontaktPerson);
+		session.setKontaktPerson(sessionRequest.getKontaktPerson());
+		session.setPatient(sessionRequest.getPatient());
+		session.setSelbstTest(sessionRequest.getSelbstTest());
+		
 
 		sessionStore.put(patientenCode,session);
 		//Session persistieren
 		SessionResponse sessionResponse = new SessionResponse();
 		sessionResponse.setPatientenCode(patientenCode);
 		sessionResponse.add(WebMvcLinkBuilder.linkTo((WebMvcLinkBuilder.methodOn(SessionController.class)).loadSession(sessionResponse.getPatientenCode())).withSelfRel());
+		sessionResponse.setKontaktPerson(session.getKontaktPerson());
+		sessionResponse.setPatient(session.getPatient());
+		sessionResponse.setSelbstTest(session.getSelbstTest());
 		return sessionResponse;
 	}
 
@@ -40,14 +57,16 @@ public class SessionController {
 		//  Load Session with SessionId
 		SessionResponse sessionResponse = new SessionResponse();
 		sessionResponse.setPatientenCode(patientenCode);
-		sessionResponse.setPatientenName("Lemmy Kilmister");
+		sessionResponse.setPatient(session.getPatient());
 		Person kontaktPerson = session.getKontaktPerson();
 		sessionResponse.setKontaktPerson(kontaktPerson );
+		sessionResponse.setSelbstTest(session.getSelbstTest());
 		sessionResponse.add(WebMvcLinkBuilder.linkTo((WebMvcLinkBuilder.methodOn(SessionController.class)).loadSession(sessionResponse.getPatientenCode())).withSelfRel());
 		return sessionResponse;
 	}
 
 	@PostMapping("/session/{patientenCode}/message")
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public void postMessage(@RequestBody Message message, @PathVariable String patientenCode) {
 		message.setId(UUID.randomUUID());
 		message.setDate(LocalDateTime.now());
@@ -59,7 +78,6 @@ public class SessionController {
 
 	@GetMapping("/session/{patientenCode}/message")
 	public List<Message> getLastMessage(@PathVariable String patientenCode) {
-		List<Message> response = new ArrayList<>();
 		return sessionStore.get(patientenCode).getMessages();
 	}
 
