@@ -17,31 +17,49 @@ class NewsPage extends StatefulWidget {
 
 class NewsPageState extends State<NewsPage> {
 
+  var test = new List<News>();
+
+  generateNews(String title,
+               Image thumbnail,
+               String url,
+               DateTime timestamp,
+               bool isVideo){
+
+    var testNews = new News();
+    testNews.title =title;
+    testNews.thumbnail = thumbnail;
+    testNews.url       = url;
+    testNews.isVideo   = isVideo;
+    testNews.timestamp = timestamp;
+
+    test.add(testNews);
+
+
+  }
+
   Future<List<News>> _getNewsData() async {
     // rest.post(rest.getURL(), "body");
 
-    var test = new List<News>();
+    generateNews("Bleibt zuhause",
+                 Image.network("https://www.roller.de/medias/sys_master/root/h2d/haf/9456392732702/3-sitzer-sofa-dunkelbraun-relaxfunktion-101508770.jpg"),
+                 "https://www.roller.de/einzelsofas-2er-3er-4er/3-sitzer-sofa-dunkelbraun-relaxfunktion/1015087700/",
+    DateTime.now(),
+    false);
 
-    var testNews = new News();
-    testNews.title = "Bleibt zuhause";
-    testNews.thumbnail = Image.network("https://www.roller.de/medias/sys_master/root/h2d/haf/9456392732702/3-sitzer-sofa-dunkelbraun-relaxfunktion-101508770.jpg");
-    testNews.url       = "https://www.roller.de/einzelsofas-2er-3er-4er/3-sitzer-sofa-dunkelbraun-relaxfunktion/1015087700/";
+    generateNews("Corona im Alltag",
+        Image.network("https://www.hessenschau.de/panorama/alltag-104~_t-1584640814199_v-16to9__medium.jpg"),
+        "https://www.roller.de/einzelsofas-2er-3er-4er/3-sitzer-sofa-dunkelbraun-relaxfunktion/1015087700/",
+        DateTime.now(),
+        true);
 
-    test.add(testNews);
+    generateNews("Zeichnen in Slack macht Spaß",
+        Image.network("https://apps-cloud.n-tv.de/img/20987819-1556271889000/16-9/750/26356881.jpg"),
+        "https://www.roller.de/einzelsofas-2er-3er-4er/3-sitzer-sofa-dunkelbraun-relaxfunktion/1015087700/",
+        DateTime.now(),
+        false);
 
-    testNews = new News();
-    testNews.title = "Corona im Alltag";
-    testNews.thumbnail = Image.network("https://www.hessenschau.de/panorama/alltag-104~_t-1584640814199_v-16to9__medium.jpg");
-    testNews.url       = "https://www.hessenschau.de/panorama/coronavirus--harsche-kritik-an-spahn-plaenen--zweiter-eintracht-spieler-positiv--1166-infizierte-in-hessen--,corona-hessen-ticker-100.html";
 
-    test.add(testNews);
 
-    testNews = new News();
-    testNews.title = "Zeichnen in Slack macht Spaß";
-    testNews.thumbnail = Image.network("https://apps-cloud.n-tv.de/img/20987819-1556271889000/16-9/750/26356881.jpg");
-    testNews.url       = "https://www.hessenschau.de/panorama/coronavirus--harsche-kritik-an-spahn-plaenen--zweiter-eintracht-spieler-positiv--1166-infizierte-in-hessen--,corona-hessen-ticker-100.html";
-
-    test.add(testNews);
 
 
 
