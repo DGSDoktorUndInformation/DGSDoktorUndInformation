@@ -39,7 +39,10 @@ class DashboardButton extends MaterialButton {
     splashColor: splashColor,
     colorBrightness: colorBrightness,
     padding: padding,
-    shape: shape,
+    shape: RoundedRectangleBorder(
+  borderRadius: new BorderRadius.circular(10.0),
+  ),
+
     clipBehavior: clipBehavior,
     focusNode: focusNode,
     autofocus: autofocus,
