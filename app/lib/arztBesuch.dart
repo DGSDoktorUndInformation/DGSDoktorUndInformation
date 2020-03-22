@@ -44,7 +44,7 @@ class ArztBesuchState extends State<ArztBesuch> {
 
   Future<String> startSession() async {
     var prefs = await SharedPreferences.getInstance();
-    var userprofileAsString = prefs.getString("user_profile");
+    var userprofileAsString = prefs.getString("profile");
     if(userprofileAsString == null) {
       return ChatApi().startSession(new Profile());
     }
