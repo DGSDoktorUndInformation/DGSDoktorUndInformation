@@ -23,7 +23,10 @@ newsTile(News news, BuildContext context) {
   }
 
   if(calculateDifference(news.timestamp) == 0){
-    dateString = "Heute " + DateFormat('dd.MM.yyyy').format(news.timestamp);
+    dateString = "Heute "  + DateFormat('hh:mm').format(news.timestamp);
+  }
+  else{
+    dateString = DateFormat('dd.MM.yyyy hh:mm').format(news.timestamp);
   }
 
   return Container(
@@ -51,7 +54,7 @@ newsTile(News news, BuildContext context) {
                   height: 2,
                 ),
                 Row(children: <Widget>[Text(
-                  news.timestamp.toString(),
+                  dateString,
                   style: subTitle,
                   textAlign: TextAlign.left,
                 ),],),

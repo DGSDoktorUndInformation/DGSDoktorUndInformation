@@ -17,7 +17,7 @@ class NewsPage extends StatefulWidget {
 
 class NewsPageState extends State<NewsPage> {
 
-  var test = new List<News>();
+  var test;
 
   generateNews(String title,
                Image thumbnail,
@@ -40,30 +40,25 @@ class NewsPageState extends State<NewsPage> {
   Future<List<News>> _getNewsData() async {
     // rest.post(rest.getURL(), "body");
 
-    generateNews("Bleibt zuhause",
-                 Image.network("https://www.roller.de/medias/sys_master/root/h2d/haf/9456392732702/3-sitzer-sofa-dunkelbraun-relaxfunktion-101508770.jpg"),
-                 "https://www.roller.de/einzelsofas-2er-3er-4er/3-sitzer-sofa-dunkelbraun-relaxfunktion/1015087700/",
+    test = new List<News>();
+
+    generateNews("WDR COSMO Corono-News",
+                 Image.network("https://www1.wdr.de/funkhaus-europa-wird-cosmo-106~_v-TeaserAufmacher.jpg"),
+                 "https://www1.wdr.de/mediathek/video/radio/cosmo/video-corona-news-in-gebaerdensprache---104.html",
     DateTime.now(),
-    false);
+    true);
 
-    generateNews("Corona im Alltag",
-        Image.network("https://www.hessenschau.de/panorama/alltag-104~_t-1584640814199_v-16to9__medium.jpg"),
-        "https://www.roller.de/einzelsofas-2er-3er-4er/3-sitzer-sofa-dunkelbraun-relaxfunktion/1015087700/",
-        DateTime.now(),
-        true);
-
-    generateNews("Zeichnen in Slack macht Spaß",
-        Image.network("https://apps-cloud.n-tv.de/img/20987819-1556271889000/16-9/750/26356881.jpg"),
-        "https://www.roller.de/einzelsofas-2er-3er-4er/3-sitzer-sofa-dunkelbraun-relaxfunktion/1015087700/",
-        DateTime.now(),
+    generateNews("Informationen in leichter Sprache",
+        Image.network("https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/BMG_Logo.svg/2000px-BMG_Logo.svg.png"),
+        "https://www.bundesgesundheitsministerium.de/coronavirus/coronavirus-leichte-sprache.html?fbclid=iwar2n1ied0umao8zlzxa0bhgutr07x3n691ysidrutzq4jtgjhsbt9go9pce",
+        new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 1),
         false);
 
-
-
-
-
-
-
+    generateNews("Pressemitteilung Badenwürtenberg",
+        Image.network("https://i.vimeocdn.com/video/866311781.webp?mw=1000&mh=563&q=70"),
+        "https://player.vimeo.com/video/398592777",
+        new DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day - 5),
+        true);
 
     return test;
   }
@@ -145,7 +140,7 @@ class NewsPageState extends State<NewsPage> {
     SingleChildScrollView
     (
        child: Container(
-         height: MediaQuery.of(context).size.height ,
+         height: MediaQuery.of(context).size.height - 80,
          child: futureBuilder,
        )
     ));

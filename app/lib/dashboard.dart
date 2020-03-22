@@ -82,7 +82,7 @@ class DashboardState extends State<Dashboard> {
                     (MediaQuery
                         .of(context)
                         .size
-                        .height / 2),
+                        .height / 3),
               ),
             ),
             Padding(
