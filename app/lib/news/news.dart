@@ -6,5 +6,7 @@ class News{
   Image thumbnail;
   String url;
   String text;
+  DateTime timestamp;
+  bool isVideo;
 
 }
