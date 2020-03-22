@@ -10,9 +10,14 @@
                             <v-card-subtitle>Durchgeführt am : </v-card-subtitle>
                             <v-card-actions>
                                 <v-dialog v-model="dialog" persistent >
-                                   
+                                   <template v-slot:activator="{ on }">
+                                       <v-btn primary v-on="on">
+                                           Ergebnisse einsehen
+                                       </v-btn>
+                                   </template>
+                                    <Selbsttest  @destroyModal="toogleDialog"  :data="data"></Selbsttest>
                                 </v-dialog>
-                                <v-btn primary> Ergebnisse einsehen</v-btn>
+
                             </v-card-actions>
                 </v-col>
             </v-row>
@@ -22,8 +27,10 @@
 </template>
 
 <script>
+    import Selbsttest from "./Selbsttest";
     export default {
         name: "CoronaSelbsttestInfo",
+        components: {Selbsttest},
         data () {
             return {
                 dialog: false,
@@ -34,7 +41,15 @@
                 type: Object,
                 required: true
             }
-        }
+        },
+        methods:{
+            toogleDialog(){
+                if(this.dialog===false){
+                    this.dialog=true;
+                }
+                else this.dialog=false
+            }
+    }
     }
 </script>
 
