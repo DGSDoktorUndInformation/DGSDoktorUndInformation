@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import de.wirvsvirus.dgsdoktorundinformation.message.Message;
 import lombok.Data;
 
+@Data
 public class Session {
 	
 	private Long id;
@@ -24,57 +25,6 @@ public class Session {
 	
 	private Map<String, String> selbstTest;
 
-	public Map<String, String> getSelbstTest() {
-		return selbstTest;
-	}
-
-	public void setSelbstTest(Map<String, String> selbstTest) {
-		this.selbstTest = selbstTest;
-	}
-
-	public Person getPatient() {
-		return patient;
-	}
-
-	public void setPatient(Person patient) {
-		this.patient = patient;
-	}
-
-
 	private List<Message> messages = new ArrayList<>();
 
-	public List<Message> getMessages() {
-		return messages;
-	}
-
-	public void setMessages(List<Message> messages) {
-		this.messages = messages;
-	}
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public String getPatientenCode() {
-		return patientenCode;
-	}
-
-	public void setPatientenCode(String patientenCode) {
-		this.patientenCode = patientenCode;
-	}
-
-	public Person getKontaktPerson() {
-		return kontaktPerson;
-	}
-
-
-	public void setKontaktPerson(Person kontaktPerson) {
-		this.kontaktPerson = kontaktPerson;
-	}
-	
-	
 }

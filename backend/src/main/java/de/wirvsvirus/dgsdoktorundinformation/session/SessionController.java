@@ -8,11 +8,14 @@ import java.util.Random;
 import java.util.UUID;
 
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.wirvsvirus.dgsdoktorundinformation.message.Message;
@@ -24,6 +27,7 @@ public class SessionController {
 
 	@PostMapping("/session")
 	@ResponseBody
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public SessionResponse createSession(@RequestBody SessionRequest sessionRequest) {
 		Random random = new Random();
 		String patientenCode = Integer.toHexString(random.nextInt(100000));
@@ -62,6 +66,7 @@ public class SessionController {
 	}
 
 	@PostMapping("/session/{patientenCode}/message")
+	@ResponseStatus(code = HttpStatus.CREATED)
 	public void postMessage(@RequestBody Message message, @PathVariable String patientenCode) {
 		message.setId(UUID.randomUUID());
 		message.setDate(LocalDateTime.now());
@@ -72,7 +77,7 @@ public class SessionController {
 	}
 
 	@GetMapping("/session/{patientenCode}/message")
-	public List<Message> getLastMessage(@PathVariable String patientenCode) {
+	public List<Message> getMessages(@PathVariable String patientenCode) {
 		return sessionStore.get(patientenCode).getMessages();
 	}
 
