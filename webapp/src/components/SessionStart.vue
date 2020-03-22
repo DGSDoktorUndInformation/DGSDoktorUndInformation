@@ -9,7 +9,6 @@
                             v-model="valid"
                     >
                         <v-text-field
-                                :counter="10"
                                 :rules="sessionkeyRules"
                                 v-model="sessionkey"
                                 label="Code des Patienten"
