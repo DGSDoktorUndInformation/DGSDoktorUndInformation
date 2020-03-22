@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:dsgdoctor/chat/chatMessageModel.dart';
 import 'package:dsgdoctor/config.dart';
 import 'package:dsgdoctor/profile/profile.dart';
-import 'package:dsgdoctor/videos.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -27,6 +26,10 @@ class ChatApi {
         headers: {
           "Content-type": "application/json"
         });
+
+    if(response.statusCode != 200) {
+      return chats;
+    }
 
     List<dynamic> decoded = jsonDecode(response.body);
     decoded.forEach((x) => chats.add(toChatMessageModel(x)));
@@ -68,7 +71,8 @@ class ChatApi {
 
     Map<String, dynamic> json = {
       "patient": {
-        "name": profile.name == null ? "" : profile.name
+        "name": profile.name == null ? "" : profile.name,
+        "geburtstag": profile.birthday == null ? "" : profile.birthday.toIso8601String()
       },
       "kontaktPerson": {
         "name": profile.contactName == null ? "" : profile.contactName,
