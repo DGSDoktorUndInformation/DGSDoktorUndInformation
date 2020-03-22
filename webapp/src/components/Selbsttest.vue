@@ -8,7 +8,7 @@
     {{key}} : {{value}}
    </v-list-item-title>
    </v-row>
-   <v-btn primary @click="destroy"></v-btn>
+   <v-btn primary @click="destroy"> OK</v-btn>
    </v-list-item>
 
 

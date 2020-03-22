@@ -7,9 +7,8 @@
             <v-row >
                 <v-col  >
                             <v-card-title class="headline">Selbsttest</v-card-title>
-                            <v-card-subtitle>Durchgeführt am : </v-card-subtitle>
                             <v-card-actions>
-                                <v-dialog v-model="dialog" persistent >
+                                <v-dialog max-width="600px"  v-model="dialog" persistent  >
                                    <template v-slot:activator="{ on }">
                                        <v-btn primary v-on="on">
                                            Ergebnisse einsehen
@@ -28,6 +27,7 @@
 
 <script>
     import Selbsttest from "./Selbsttest";
+
     export default {
         name: "CoronaSelbsttestInfo",
         components: {Selbsttest},
