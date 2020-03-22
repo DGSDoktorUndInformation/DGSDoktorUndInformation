@@ -1,5 +1,5 @@
-import 'package:dsgdoctor/corvidselbsttest/corvidselbsttestmodel.dart';
-import 'package:dsgdoctor/dashboard.dart';
+import 'package:DGSDocInfo/corvidselbsttest/corvidselbsttestmodel.dart';
+import 'package:DGSDocInfo/dashboard.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

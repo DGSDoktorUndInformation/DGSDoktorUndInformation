@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:dsgdoctor/chat/chatMessageModel.dart';
-import 'package:dsgdoctor/config.dart';
-import 'package:dsgdoctor/profile/profile.dart';
+import 'package:DGSDocInfo/chat/chatMessageModel.dart';
+import 'package:DGSDocInfo/config.dart';
+import 'package:DGSDocInfo/profile/profile.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 

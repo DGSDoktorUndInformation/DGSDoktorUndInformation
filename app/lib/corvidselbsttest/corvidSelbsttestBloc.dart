@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:dsgdoctor/corvidselbsttest/Frage.dart';
-import 'package:dsgdoctor/corvidselbsttest/corvidselbsttestmodel.dart';
+import 'package:DGSDocInfo/corvidselbsttest/Frage.dart';
+import 'package:DGSDocInfo/corvidselbsttest/corvidselbsttestmodel.dart';
 import 'package:flutter/cupertino.dart';
 
 import 'corvidSelbsttestFragen.dart';

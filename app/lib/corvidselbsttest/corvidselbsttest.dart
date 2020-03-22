@@ -1,8 +1,8 @@
-import 'package:dsgdoctor/corvidselbsttest/corvidSelbstTestResult.dart';
-import 'package:dsgdoctor/corvidselbsttest/corvidSelbsttestBloc.dart';
-import 'package:dsgdoctor/corvidselbsttest/corvidSelbsttestFragen.dart';
-import 'package:dsgdoctor/corvidselbsttest/corvidselbsttestmodel.dart';
-import 'package:dsgdoctor/videoplayer.dart';
+import 'package:DGSDocInfo/corvidselbsttest/corvidSelbstTestResult.dart';
+import 'package:DGSDocInfo/corvidselbsttest/corvidSelbsttestBloc.dart';
+import 'package:DGSDocInfo/corvidselbsttest/corvidSelbsttestFragen.dart';
+import 'package:DGSDocInfo/corvidselbsttest/corvidselbsttestmodel.dart';
+import 'package:DGSDocInfo/videoplayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
