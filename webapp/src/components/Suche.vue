@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-text-field label="Begriffsuche für die Kommunikation" v-model="text"></v-text-field>
+        <v-text-field label="Begriffsuche für die Kommunikation" v-model="text" clearable></v-text-field>
         <v-list>
             <v-list-item
                     v-for="i in items" :key="i.nachrichtenText"
@@ -17,28 +17,39 @@
 </template>
 
 <script>
+    import axios from "axios";
+
     export default {
         name: "Suche",
         data: () => ({
             text: "",
+            items: []
         }),
-        methods: {
-            sendMessage(message) {
-                console.log(message);
+        props: {
+            sessionkey: {
+                type: String,
+                required: true
             }
         },
-        computed: {
-            items() {
-                return [
-                    {nachrichtenText: 'Haben Sie Fieber?'},
-                    {nachrichtenText: 'Haben Sie erbrochen?'},
-                    {nachrichtenText: 'Ist Ihnen Übel?'},
-                    {nachrichtenText: 'Haben Sie Fieber2?'},
-                    {nachrichtenText: 'Haben Sie Fieber3?'},
-                    {nachrichtenText: 'Haben Sie Fieber4?'},
-                    {nachrichtenText: 'Haben Sie Fieber5?'},
-                    {nachrichtenText: this.text}
-                ]
+        methods: {
+            async sendMessage(message) {
+                await axios.post("/session/" + this.sessionkey + "/message", message);
+            //    Fehlerhandling bei Nichterfolg
+            }
+        },
+        watch: {
+            async text() {
+                if (!this.text) {
+                    this.items = [];
+                    return;
+                }
+                this.items = await axios.get("/messageRepository?tag=" + this.text);
+                const customMessage = {
+                    nachrichtenText: this.text,
+                    antwortOptionen: [],
+                    links: []
+                };
+                this.items.push(customMessage);
             }
         }
     }

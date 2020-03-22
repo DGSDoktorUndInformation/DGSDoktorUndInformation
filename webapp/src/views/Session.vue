@@ -9,7 +9,7 @@
             </v-row>
             <v-row class="flex-column ma-3 pa-6" >
                 <v-card>
-                    <suche/>
+                    <suche :sessionkey="data.patientenCode"/>
                 </v-card>
             </v-row>
             <v-row class="flex-column ma-3 pa-6">
