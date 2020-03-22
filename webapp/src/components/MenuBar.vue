@@ -13,7 +13,6 @@
         </v-btn>
 
         <v-spacer></v-spacer>
-        <v-btn  text to="/" >BEENDEN</v-btn>
         <v-btn  text to="/Faq" >FAQ</v-btn>
 
     </v-app-bar>
