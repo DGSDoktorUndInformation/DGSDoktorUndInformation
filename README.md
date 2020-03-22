@@ -53,7 +53,7 @@ npm run serve
 ```
 
 ### Verbindung zum Backend
-TODO
+Diese App läuft parallel zur Backendapp auf einer Umgebung
 
 ## Handapp
 [Dart](https://de.wikipedia.org/wiki/Dart_(Programmiersprache))
