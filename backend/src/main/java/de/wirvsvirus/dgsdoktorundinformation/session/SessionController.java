@@ -31,18 +31,18 @@ public class SessionController {
 	public SessionResponse createSession(@RequestBody SessionRequest sessionRequest) {
 		Random random = new Random();
 		String patientenCode = Integer.toHexString(random.nextInt(100000));
-
+		
 		Session session = new Session();
-		Person kontaktPerson = new Person();
-		kontaktPerson.setVorname("James");
-		kontaktPerson.setName("Hetfield");
-		session.setKontaktPerson(kontaktPerson);
+		session.setKontaktPerson(sessionRequest.getKontaktPerson());
+		session.setPatient(sessionRequest.getPatient());
 
 		sessionStore.put(patientenCode,session);
 		//Session persistieren
 		SessionResponse sessionResponse = new SessionResponse();
 		sessionResponse.setPatientenCode(patientenCode);
 		sessionResponse.add(WebMvcLinkBuilder.linkTo((WebMvcLinkBuilder.methodOn(SessionController.class)).loadSession(sessionResponse.getPatientenCode())).withSelfRel());
+		sessionResponse.setKontaktPerson(session.getKontaktPerson());
+		sessionResponse.setPatient(session.getPatient());
 		return sessionResponse;
 	}
 	
@@ -54,7 +54,7 @@ public class SessionController {
 		//  Load Session with SessionId
 		SessionResponse sessionResponse = new SessionResponse();
 		sessionResponse.setPatientenCode(patientenCode);
-		sessionResponse.setPatientenName("Lemmy Kilmister");
+		sessionResponse.setPatient(session.getPatient());
 		Person kontaktPerson = session.getKontaktPerson();
 		sessionResponse.setKontaktPerson(kontaktPerson );
 		sessionResponse.add(WebMvcLinkBuilder.linkTo((WebMvcLinkBuilder.methodOn(SessionController.class)).loadSession(sessionResponse.getPatientenCode())).withSelfRel());
@@ -70,7 +70,6 @@ public class SessionController {
 	
 	@GetMapping("/session/{patientenCode}/message")
 	public List<Message> getLastMessage(@PathVariable String patientenCode) {
-		List<Message> response = new ArrayList<>();
 		return sessionStore.get(patientenCode).getMessages();
 	}
 	

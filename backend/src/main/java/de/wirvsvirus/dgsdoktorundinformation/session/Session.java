@@ -17,6 +17,17 @@ public class Session {
 	private String patientenCode;
 	
 	private Person kontaktPerson;
+	
+	private Person patient;
+
+	public Person getPatient() {
+		return patient;
+	}
+
+	public void setPatient(Person patient) {
+		this.patient = patient;
+	}
+
 
 	private List<Message> messages = new ArrayList<>();
 
