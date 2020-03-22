@@ -11,7 +11,7 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final bg = isMe
         ? Color.fromRGBO(255, 255, 255, 1)
-        : Color.fromRGBO(176, 216, 192, 1);
+        : Color.fromRGBO(167, 221, 209, 1);
     final align = isMe ? CrossAxisAlignment.start : CrossAxisAlignment.end;
     final radius = BorderRadius.all(Radius.circular(15.0));
     return Column(
