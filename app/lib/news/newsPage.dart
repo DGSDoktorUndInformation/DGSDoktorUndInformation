@@ -65,7 +65,7 @@ class NewsPageState extends State<NewsPage> {
         false);
 
     generateNews(
-        "Pressemitteilung Badenwürtenberg",
+        "Das Corona-Virus in DGS erklärt",
         Image.network(
             "https://ksl-msi-nrw.de/public/styles/large/public/ksl/msi/bilder/Vorschau_Corona_Video.jpg?h=02882563&itok=5MAtx90k"),
         "https://ksl-msi-nrw.de/public/ksl/msi/video/ksl_corona_virus_MAGS_UT.mp4",
