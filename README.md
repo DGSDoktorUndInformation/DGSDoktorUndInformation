@@ -3,20 +3,20 @@
 ## Context
 
 ```plantuml
-    @startuml
-    actor Arzt
-    actor Patient
-    node Webapp
-    node Backend
-    node Handyapp
+@startuml
+actor Arzt
+node Webapp
+node Backend
+node Handyapp
+actor Patient
 
-    Arzt -> Webapp
-    Webapp -> Backend
-    Backend -> Webapp
-    Handyapp -> Backend
-    Backend -> Handyapp
-    Patient -> Handyapp
-    @enduml
+Arzt -> Webapp
+Webapp -> Backend
+Backend -> Webapp
+Handyapp -> Backend
+Backend -> Handyapp
+Patient -> Handyapp
+@enduml
 ```
 
 ## Backend
