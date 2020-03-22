@@ -24,22 +24,23 @@ class CorvidSelbsttestState extends State<CorvidSelbsttest> {
     corvidSelbsttestBloc = new CorvidSelbsttestBloc(CorvidSelbsttestFragen());
   }
 
-  Column createStep(Frage frage) {
-    return Column(
-      children: <Widget>[
-        Text(frage.frage, style: Theme
-            .of(context)
-            .textTheme
-            .title),
-        Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Videoplayer(frage.video),
-        ),
-        Wrap(
-            children: frage.suggestions
-                .map((x) => questionButton(frage.frage, x))
-                .toList())
-      ],
+  Padding createStep(Frage frage) {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: Column(
+        children: <Widget>[
+
+          Text(frage.frage, style: TextStyle(color: Colors.white, fontSize: 24)),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
+            child: Videoplayer(frage.video),
+          ),
+          Wrap(
+              children: frage.suggestions
+                  .map((x) => questionButton(frage.frage, x))
+                  .toList())
+        ],
+      ),
     );
   }
 
@@ -68,6 +69,7 @@ class CorvidSelbsttestState extends State<CorvidSelbsttest> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: ThemeColors.Primary,
         appBar: AppBar(
             centerTitle: true,
             automaticallyImplyLeading: false,
@@ -90,7 +92,7 @@ class CorvidSelbsttestState extends State<CorvidSelbsttest> {
                   if (snapshot.hasError)
                     return new Text('Error: ${snapshot.error}');
                   else if (!snapshot.hasData) {
-                    return Center(child: MaterialButton(onPressed: () => { corvidSelbsttestBloc.getInitialData() }, child: Text("Test starten"),));
+                    return Center(child: MaterialButton(onPressed: () => { corvidSelbsttestBloc.getInitialData() }, child: Text("Test starten", style: TextStyle(color: Colors.white) ),));
                   } else {
                     return createStep(snapshot.data);
                   }

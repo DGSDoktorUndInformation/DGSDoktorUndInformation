@@ -27,6 +27,7 @@ class DashboardState extends State<Dashboard> {
     return Scaffold(
       backgroundColor: ThemeColors.Primary,
       appBar: AppBar(
+        backgroundColor: ThemeColors.Primary,
         actions: <Widget>[
           IconButton(
             icon: Icon(Icons.settings),
@@ -58,7 +59,6 @@ class DashboardState extends State<Dashboard> {
         centerTitle: true,
         automaticallyImplyLeading: false,
         title: AppBarContent(),
-        backgroundColor: ThemeColors.appBar,
       ),
       body: SingleChildScrollView(
         child: Column(
