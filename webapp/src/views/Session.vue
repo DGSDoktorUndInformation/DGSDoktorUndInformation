@@ -3,6 +3,7 @@
         <v-row>
             <v-row class="ma-3 pa-3">
                 <v-container class="col-12">
+                    <Patient :data="data.patient"></Patient>
                     <DolmetscherKontakt></DolmetscherKontakt>
                     <ErreichbarePerson v-if="!(data.kontaktPerson.telefonNummer===null && data.kontaktPerson.eMailAdresse===null) "   :data="data.kontaktPerson"></ErreichbarePerson>
 <!--                    <CoronaSelbsttestInfo v-if="data.selbstTest!==null"></CoronaSelbsttestInfo>-->
@@ -30,11 +31,12 @@
     import Chat from "../components/Chat";
     import DolmetscherKontakt from "../components/DolmetscherKontakt";
     import ErreichbarePerson from "../components/ErreichbarePerson";
+    import Patient from "../components/Patient";
   //  import CoronaSelbsttestInfo from "../components/CoronaSelbsttestInfo";
 
     export default {
         name: "Session",
-         components: { ErreichbarePerson, DolmetscherKontakt, Chat, Suche},
+         components: { ErreichbarePerson, DolmetscherKontakt, Chat, Suche, Patient},
         props: {
             data: {
                 type: Object,
