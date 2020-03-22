@@ -1,20 +1,19 @@
 <template>
     <v-container fluid>
         <v-row>
-            <v-col cols="auto"></v-col>
-            <v-row class="flex-column ma-3 pa-6">
-                <v-card>
+            <v-row class="ma-3 pa-3">
+                <v-card class="col-12">
 <!--                    Dolmetscher, Kontakt, Selbsttest -->
                 </v-card>
             </v-row>
-            <v-row class="flex-column ma-3 pa-6" >
-                <v-card>
+            <v-row class="ma-3 pa-3" >
+                <v-card class="col-12">
                     <suche :sessionkey="data.patientenCode"/>
                 </v-card>
             </v-row>
-            <v-row class="flex-column ma-3 pa-6">
-                <v-card>
-<!--                    Chat           -->
+            <v-row class="ma-3 pa-3">
+                <v-card color="#374151" class="col-12">
+                    <chat :sessionkey="data.patientenCode"></chat>
                 </v-card>
             </v-row>
         </v-row>
@@ -26,10 +25,11 @@
 
 <script>
     import Suche from "../components/Suche";
+    import Chat from "../components/Chat";
 
     export default {
         name: "Session",
-        components: {Suche},
+        components: {Chat, Suche},
         props: {
             data: {
                 type: Object,
@@ -40,5 +40,4 @@
 </script>
 
 <style scoped>
-
 </style>
