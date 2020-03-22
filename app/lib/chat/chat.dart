@@ -41,7 +41,6 @@ class ChatState extends State<Chat> {
       itemBuilder: (BuildContext context, int index) {
         var isMe = chatMessages[index].fromApp;
         var messageAlignment;
-        var time = chatMessages[index].date.substring(11, 16);
 
         if (isMe) {
           messageAlignment = Alignment.centerRight;
@@ -55,7 +54,6 @@ class ChatState extends State<Chat> {
             alignment: messageAlignment,
             child: new ChatBubble(
               message: chatMessages[index].message,
-              time: time,
               delivered: true,
               isMe: isMe,
               videoUrl: chatMessages[index].videoUrl,
@@ -67,11 +65,10 @@ class ChatState extends State<Chat> {
   }
 
   Widget yesNoArea(List<ChatMessageModel> chatMessageModel) {
-
     List<Widget> widgets = new List<Widget>();
-    var suggestions = chatMessageModel?.last?.suggestions;
+    chatMessageModel.sort((x, y) => y.date.compareTo(x.date));
+    var suggestions = chatMessageModel.firstWhere((x) => !x.fromApp).suggestions;
     suggestions?.forEach((x) => widgets.add(questionButton(x)));
-
 
     return Wrap(
         children: widgets
