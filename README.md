@@ -24,11 +24,11 @@ Dieses UML ist ein PlantUML Diagramm. **TODO: Githubintegration**. Auf [Plantuml
 Das Backend steuert den State und verwaltet die Kommunikation der Chats
 
 ### Technologien
-[Java]("https://www.java.com/")
+[Java](https://www.java.com/)
 
-[SpringBoot]("https://spring.io/projects/spring-boot")
+[SpringBoot](https://spring.io/projects/spring-boot)
 
-[Lombok]("https://projectlombok.org/")
+[Lombok](https://projectlombok.org/)
 
 ### Anwendungsstart
 ```
@@ -56,9 +56,9 @@ npm run serve
 TODO
 
 ## Handapp
-[Dart]("https://de.wikipedia.org/wiki/Dart_(Programmiersprache)")
+[Dart](https://de.wikipedia.org/wiki/Dart_(Programmiersprache))
 
-[Flutter]("https://flutter.dev")
+[Flutter](https://flutter.dev)
 
 ### Anwendungsstart
 ```
