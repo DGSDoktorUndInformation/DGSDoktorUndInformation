@@ -77,7 +77,7 @@ public class SessionController {
 	}
 
 	@GetMapping("/session/{patientenCode}/message")
-	public List<Message> getLastMessage(@PathVariable String patientenCode) {
+	public List<Message> getMessages(@PathVariable String patientenCode) {
 		return sessionStore.get(patientenCode).getMessages();
 	}
 
