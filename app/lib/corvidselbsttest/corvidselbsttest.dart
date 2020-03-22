@@ -33,7 +33,7 @@ class CorvidSelbsttestState extends State<CorvidSelbsttest> {
                 fontSize: 30,
                 fontWeight: FontWeight.bold)),
         Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: const EdgeInsets.all(20.0),
           child: Videoplayer(frage.video),
         ),
         Wrap(
@@ -97,7 +97,7 @@ class CorvidSelbsttestState extends State<CorvidSelbsttest> {
                         child: DashboardButton(
                             onPressed: () =>
                                 {corvidSelbsttestBloc.getInitialData()},
-                            text: "Test starten"));
+                            text: "Test starten", style: TextStyle(color: Colors.white) ));
                   } else {
                     return createStep(snapshot.data);
                   }

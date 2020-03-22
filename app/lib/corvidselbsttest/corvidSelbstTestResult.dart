@@ -14,6 +14,7 @@ class CorvidSelbstTestResult extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
         backgroundColor: ThemeColors.Primary,
         appBar: AppBar(
@@ -35,7 +36,7 @@ class CorvidSelbstTestResult extends StatelessWidget {
             if (!snapshot.hasData) {
               return Center(child: CircularProgressIndicator());
             }
-            return Text(snapshot.data, style: TextStyle(color: Colors.white),);
+            return Text(snapshot.data, style: TextStyle(color: Colors.white, fontSize: 20));
           },
 
         )

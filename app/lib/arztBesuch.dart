@@ -23,9 +23,9 @@ class ArztBesuchState extends State<ArztBesuch> {
     return Scaffold(
       backgroundColor: ThemeColors.Primary,
         appBar: AppBar(
-          centerTitle: true,
-          automaticallyImplyLeading: false,
-          backgroundColor: ThemeColors.Primary,
+            centerTitle: true,
+            automaticallyImplyLeading: false,
+            backgroundColor: ThemeColors.Primary,
             title: AppBarContent(),
             leading: IconButton(
                 onPressed: () => Navigator.pop(context),
@@ -33,8 +33,7 @@ class ArztBesuchState extends State<ArztBesuch> {
                 tooltip: 'Zurück')),
         body: FutureBuilder<String>(
             future: startSession(),
-            builder:
-                (BuildContext context, AsyncSnapshot snapshot) {
+            builder: (BuildContext context, AsyncSnapshot snapshot) {
               if (!snapshot.hasData) {
                 return Center(child: CircularProgressIndicator());
               }
@@ -46,7 +45,7 @@ class ArztBesuchState extends State<ArztBesuch> {
   Future<String> startSession() async {
     var prefs = await SharedPreferences.getInstance();
     var userprofileAsString = prefs.getString("profile");
-    if(userprofileAsString == null) {
+    if (userprofileAsString == null) {
       return ChatApi().startSession(new Profile());
     }
 
