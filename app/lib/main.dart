@@ -1,3 +1,6 @@
+import 'package:DGSDocInfo/appBarContent.dart';
+import 'package:DGSDocInfo/arztBesuch.dart';
+import 'package:DGSDocInfo/colors.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 

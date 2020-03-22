@@ -1,7 +1,7 @@
-import 'package:dsgdoctor/appBarContent.dart';
-import 'package:dsgdoctor/colors.dart';
-import 'package:dsgdoctor/news/news.dart';
-import 'package:dsgdoctor/news/newsTile.dart';
+import 'package:DGSDocInfo/appBarContent.dart';
+import 'package:DGSDocInfo/colors.dart';
+import 'package:DGSDocInfo/news/news.dart';
+import 'package:DGSDocInfo/news/newsTile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

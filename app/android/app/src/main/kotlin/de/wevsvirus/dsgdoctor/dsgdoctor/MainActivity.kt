@@ -1,4 +1,4 @@
-package de.wevsvirus.dsgdoctor.dsgdoctor
+package de.wevsvirus.DGSDocInfo.DGSDocInfo
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity

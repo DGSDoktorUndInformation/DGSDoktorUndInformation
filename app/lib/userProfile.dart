@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:dsgdoctor/appBarContent.dart';
-import 'package:dsgdoctor/colors.dart';
-import 'package:dsgdoctor/date2String.dart';
-import 'package:dsgdoctor/profile/profile.dart';
+import 'package:DGSDocInfo/appBarContent.dart';
+import 'package:DGSDocInfo/colors.dart';
+import 'package:DGSDocInfo/date2String.dart';
+import 'package:DGSDocInfo/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

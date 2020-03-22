@@ -1,4 +1,4 @@
-# dsgdoctor
+# DGSDocInfo
 
 A new Flutter project.
 

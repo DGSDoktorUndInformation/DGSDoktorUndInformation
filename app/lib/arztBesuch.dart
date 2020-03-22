@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:dsgdoctor/appBarContent.dart';
-import 'package:dsgdoctor/chat/chat.dart';
-import 'package:dsgdoctor/chat/chatApi.dart';
-import 'package:dsgdoctor/profile/profile.dart';
+import 'package:DGSDocInfo/appBarContent.dart';
+import 'package:DGSDocInfo/chat/chat.dart';
+import 'package:DGSDocInfo/chat/chatApi.dart';
+import 'package:DGSDocInfo/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';

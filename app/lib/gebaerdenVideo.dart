@@ -1,5 +1,5 @@
-import 'package:dsgdoctor/appBarContent.dart';
-import 'package:dsgdoctor/colors.dart';
+import 'package:DGSDocInfo/appBarContent.dart';
+import 'package:DGSDocInfo/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';

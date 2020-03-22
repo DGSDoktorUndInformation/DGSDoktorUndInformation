@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:dsgdoctor/chat/chatApi.dart';
-import 'package:dsgdoctor/chat/chatMessageModel.dart';
+import 'package:DGSDocInfo/chat/chatApi.dart';
+import 'package:DGSDocInfo/chat/chatMessageModel.dart';
 
 class ChatBloc {
   StreamController<List<ChatMessageModel>> streamController =

@@ -1,6 +1,7 @@
-import 'package:dsgdoctor/chat/chatApi.dart';
-import 'package:dsgdoctor/chat/chatBloc.dart';
-import 'package:dsgdoctor/colors.dart';
+import 'package:DGSDocInfo/chat/chatApi.dart';
+import 'package:DGSDocInfo/chat/chatBloc.dart';
+import 'package:DGSDocInfo/colors.dart';
+import 'package:DGSDocInfo/profile/profile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 

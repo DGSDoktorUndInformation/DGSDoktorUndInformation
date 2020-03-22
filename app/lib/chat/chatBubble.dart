@@ -1,4 +1,4 @@
-import 'package:dsgdoctor/videoplayer.dart';
+import 'package:DGSDocInfo/videoplayer.dart';
 import 'package:flutter/material.dart';
 
 class ChatBubble extends StatelessWidget {

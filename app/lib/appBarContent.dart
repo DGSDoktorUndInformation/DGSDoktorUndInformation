@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class AppBarContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Text("DGS Doctor");
+    return Text("DGSDocInfo");
   }
 
 }

@@ -1,9 +1,9 @@
 import 'dart:convert';
 
-import 'package:dsgdoctor/corvidselbsttest/corvidselbsttest.dart';
-import 'package:dsgdoctor/news/newsPage.dart';
-import 'package:dsgdoctor/profile/profile.dart';
-import 'package:dsgdoctor/userProfile.dart';
+import 'package:DGSDocInfo/corvidselbsttest/corvidselbsttest.dart';
+import 'package:DGSDocInfo/news/newsPage.dart';
+import 'package:DGSDocInfo/profile/profile.dart';
+import 'package:DGSDocInfo/userProfile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -86,8 +86,8 @@ class DashboardState extends State<Dashboard> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
-              child: Image.asset("assets/slogan.png"),
+              padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
+              child: Image.asset("assets/logo_light.png"),
             )
           ],
         ),
