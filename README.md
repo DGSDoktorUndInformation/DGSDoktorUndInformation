@@ -18,12 +18,13 @@ Backend -> Handyapp
 Patient -> Handyapp
 @enduml
 ```
+Dieses UML ist ein PlantUML Diagramm. **TODO: Githubintegration**. Auf [Plantuml](https://plantuml.com/de/) kann dieses Diagramm erzeugt werden.
 
 ## Backend
 Das Backend steuert den State und verwaltet die Kommunikation der Chats
 
 ### Technologien
-[Java](https://www.java.com/")
+[Java]("https://www.java.com/")
 
 [SpringBoot]("https://spring.io/projects/spring-boot")
 
