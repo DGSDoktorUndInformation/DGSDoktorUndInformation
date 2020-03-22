@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:dsgdoctor/chat/chatApi.dart';
 import 'package:dsgdoctor/chat/chatMessageModel.dart';
-import 'package:dsgdoctor/profile/profile.dart';
 
 class ChatBloc {
   StreamController<List<ChatMessageModel>> streamController =
@@ -25,7 +24,7 @@ class ChatBloc {
     loadedPages = [0, 1];
     applyChatsToStream(loadedPages);
 
-    timer = new Timer(new Duration(seconds: 5), () => applyChatsToStream([0]));
+    timer = new Timer.periodic(new Duration(seconds: 1), (t) => applyChatsToStream([0]));
   }
 
   void onMessage(List<ChatMessageModel> x) {
