@@ -74,7 +74,7 @@ newsTile(News news, BuildContext context) {
                 SizedBox(
                   height: 10,
                 ),
-                SizedBox(height: 200, child: news.thumbnail)
+                SizedBox(height: 125, child: news.thumbnail)
               ],
             ),
           )));
