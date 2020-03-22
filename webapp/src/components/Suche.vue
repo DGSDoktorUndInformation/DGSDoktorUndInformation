@@ -34,7 +34,7 @@
         methods: {
             async sendMessage(message) {
                 await axios.post("/session/" + this.sessionkey + "/message", message);
-            //    Fehlerhandling bei Nichterfolg
+                //    Fehlerhandling bei Nichterfolg
             }
         },
         watch: {
@@ -43,7 +43,12 @@
                     this.items = [];
                     return;
                 }
-                this.items = await axios.get("/messageRepository?tag=" + this.text);
+                const response = await axios.get("/messageRepository?tag=" + this.text);
+                if (response.data.message) {
+                    this.items = response.data.message;
+                } else {
+                    this.items = []
+                }
                 const customMessage = {
                     nachrichtenText: this.text,
                     antwortOptionen: [],
