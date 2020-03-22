@@ -23,7 +23,7 @@ Patient -> Handyapp
 Das Backend steuert den State und verwaltet die Kommunikation der Chats
 
 ### Technologien
-[Java](https://www.java.com/")
+[Java]("https://www.java.com/")
 
 [SpringBoot]("https://spring.io/projects/spring-boot")
 
