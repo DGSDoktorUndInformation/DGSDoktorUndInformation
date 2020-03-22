@@ -86,8 +86,8 @@ class DashboardState extends State<Dashboard> {
               ),
             ),
             Padding(
-              padding: EdgeInsets.fromLTRB(30, 0, 30, 0),
-              child: Image.asset("assets/slogan.png"),
+              padding: EdgeInsets.fromLTRB(80, 0, 80, 0),
+              child: Image.asset("assets/logo_light.png"),
             )
           ],
         ),
