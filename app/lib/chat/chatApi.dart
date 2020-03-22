@@ -79,7 +79,7 @@ class ChatApi {
         "telefonNummer": profile.contactTelephone == null ? "" : profile
             .contactTelephone
       },
-      "selbsttest": selbsttest
+      "selbstTest": jsonDecode(selbsttest)
     };
     var baseUrl = Config.baseUrl;
 
