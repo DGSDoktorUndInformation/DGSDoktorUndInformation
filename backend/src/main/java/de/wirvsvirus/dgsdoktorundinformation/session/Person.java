@@ -1,15 +1,19 @@
 package de.wirvsvirus.dgsdoktorundinformation.session;
 
+import java.time.LocalDate;
+
 public class Person {
 
 	private String name;
-	
+
 	private String vorname;
-	
+
 	private String telefonNummer;
-	
+
 	private String eMailAdresse;
-	
+
+	private LocalDate geburtstag;
+
 	public String getName() {
 		return name;
 	}
@@ -33,5 +37,13 @@ public class Person {
 	}
 	public void seteMailAdresse(String eMailAdresse) {
 		this.eMailAdresse = eMailAdresse;
+	}
+
+	public LocalDate getGeburtstag() {
+		return geburtstag;
+	}
+
+	public void setGeburtstag(LocalDate geburtstag) {
+		this.geburtstag = geburtstag;
 	}
 }
