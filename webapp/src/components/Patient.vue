@@ -1,10 +1,8 @@
 <template>
-    <v-container>
-        <v-card  class="mx-auto"
-                 max-width="344"
-        >
-            <v-row  align="center" >
-                <v-col  cols="8">
+    <v-container class="ma-0 pa-0">
+        <v-card>
+            <v-row align="center">
+                <v-col>
                     <v-list-item three-line>
                         <v-list-item-content>
                             <div class="overline mb-4">Patient</div>
@@ -12,13 +10,8 @@
                             <v-list-item-subtitle><v-icon small>mdi-cake</v-icon> {{birthday}}</v-list-item-subtitle>
                         </v-list-item-content>
                     </v-list-item>
-
-                </v-col>
-                <v-col cols="4">
                 </v-col>
             </v-row>
-
-
         </v-card>
     </v-container>
 </template>

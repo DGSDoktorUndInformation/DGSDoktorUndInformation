@@ -1,9 +1,7 @@
 <!--TODO Daten einfuegen, wenn sie vom Backend bereitgestellt werden-->
 <template>
-    <v-container>
-        <v-card class="mx-auto"
-                max-width="344"
-        >
+    <v-container class="ma-0 pa-0">
+        <v-card>
             <v-row>
                 <v-col>
                     <v-list-item three-line>
@@ -26,6 +24,7 @@
             </v-row>
         </v-card>
     </v-container>
+
 </template>
 
 <script>
@@ -57,9 +56,7 @@
         },
         methods: {
             toogleDialog() {
-                if (this.dialog === false) {
-                    this.dialog = true;
-                } else this.dialog = false
+                this.dialog = this.dialog === false;
             }
         }
     }

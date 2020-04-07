@@ -1,9 +1,7 @@
 <!--TODO Daten einfuegen, wenn sie vom Backend bereitgestellt werden oder woher auch immer-->
 <template>
-    <v-container>
-        <v-card class="mx-auto"
-                max-width="344"
-        >
+    <v-container class="ma-0 pa-0">
+        <v-card>
             <v-row align="center">
                 <v-col cols="8">
                     <v-list-item three-line>
