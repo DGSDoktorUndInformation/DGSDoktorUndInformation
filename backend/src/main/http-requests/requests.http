@@ -14,6 +14,28 @@ Content-Type: application/json
   }
 }
 
+### Session inkl. Selbsttest starten
+POST http://localhost:8080/session
+Content-Type: application/json
+
+{
+  "patient":
+  {
+    "name": "Hans Peter"
+  },
+  "kontaktPerson":
+  {
+    "name": "Heidi Hugo",
+    "telefonNummer": "015678615"
+  },
+  "selbstTest": {
+    "Haben Sie Fieber?":"nein",
+    "Haben Sie Husten?": "ja",
+    "Wie wohnen Sie?": "allein",
+    "datum": "2020-04-20"
+  }
+}
+
 ### Get Session
 GET http://localhost:8080/session/{SessionKey}
 
@@ -42,3 +64,5 @@ Content-Type: application/json
 
 ### Vorgefertigte Fragen zum spezifischen Begriff suchen
 GET http://localhost:8080/messageRepository?tag={Begriff};
+
+###
