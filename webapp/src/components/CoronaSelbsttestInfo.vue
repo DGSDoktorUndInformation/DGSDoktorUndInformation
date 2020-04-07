@@ -21,13 +21,11 @@
                             </template>
                             <Selbsttest @destroyModal="toogleDialog" :data="data"></Selbsttest>
                         </v-dialog>
-
                     </v-card-actions>
                 </v-col>
             </v-row>
         </v-card>
     </v-container>
-
 </template>
 
 <script>

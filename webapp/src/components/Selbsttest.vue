@@ -10,14 +10,8 @@
                 </v-row>
                 <v-btn primary @click="destroy"> OK</v-btn>
             </v-list-item>
-
-
         </v-list>
-
-
     </v-container>
-
-
 </template>
 
 <script>
