@@ -10,6 +10,7 @@ import java.util.UUID;
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import de.wirvsvirus.dgsdoktorundinformation.message.Message;
 
 @RestController
+@CrossOrigin
 public class SessionController {
 
 	private Map<String,Session> sessionStore = new HashMap<>();

@@ -1,12 +1,25 @@
+buildscript {      // Configuration for building
+  repositories {
+    jcenter()      // Bintray's repository - a fast Maven Central mirror & more
+    mavenCentral()
+  }
+  dependencies {
+    classpath 'com.google.cloud.tools:appengine-gradle-plugin:2.2.0' // Latest 1.x.x release
+    classpath 'org.akhikhl.gretty:gretty:+'
+  }
+}
+
 plugins {
 	id 'org.springframework.boot' version '2.2.5.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
 	id 'java'
 }
 
+
 group = 'de.wirvsvirus.dgsdoktorundinformation'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '1.8'
+targetCompatibility = 1.8
 
 configurations {
 	compileOnly {
@@ -15,10 +28,32 @@ configurations {
 }
 
 repositories {
+	maven {
+		url 'https://maven-central.storage.googleapis.com'             // Google's mirror of Maven Central
+	}
+	jcenter()
 	mavenCentral()
 }
 
+apply plugin: 'java'
+apply plugin: 'war'
+apply plugin: 'org.akhikhl.gretty'
+apply plugin: 'com.google.cloud.tools.appengine'
+
+
 dependencies {
+compile "org.springframework.boot:spring-boot-starter-web", { exclude group: 'org.springframework.boot', module: 'spring-boot-starter-tomcat' }
+
+compileOnly group: 'javax.servlet', name: 'javax.servlet-api', version: '3.1.0'
+
+configurations.all {
+   exclude group: 'org.slf4j', module: 'slf4j-log4j12'
+}
+
+
+  providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
+  providedCompile 'com.google.appengine:appengine:+'
+
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'org.springframework.boot:spring-boot-starter-hateoas'
@@ -30,6 +65,30 @@ dependencies {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}
 }
+
+// [START gretty]
+gretty {
+    httpPort = 8080
+    contextPath = '/'
+    servletContainer = 'jetty9'  // What App Engine Flexible uses
+}
+// [END gretty]
+
+// [START model]
+appengine {
+
+  deploy {   // deploy configuration
+    stopPreviousVersion = true  // default - stop the current version
+    promote = true              // default - & make this the current version
+    projectId = 'GCLOUD_CONFIG' // delegate to project in gcloud config
+    version = 'GCLOUD_CONFIG'   // delegate to gcloud to generate a version
+  }
+
+}
+// [END model]
+
+
+// [END gradle]
 
 test {
 	useJUnitPlatform()

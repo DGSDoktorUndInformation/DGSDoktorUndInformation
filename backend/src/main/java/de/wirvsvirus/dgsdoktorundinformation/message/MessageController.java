@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.hateoas.server.mvc.WebMvcLinkBuilder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,9 +17,8 @@ public class MessageController  {
 	
 	@GetMapping("/messageRepository")
 	@ResponseBody
+	@CrossOrigin
 	public MessageListResponse findMessages( @RequestParam Collection<String> tag) {
-		
-		System.out.println(tag);
 		
 		Collection<Message> messages= new ArrayList<>();
 		

@@ -6,7 +6,7 @@ module.exports = {
     port:"8081",
     proxy:{
       "/": {
-        target: 'http://localhost:8080'
+        target: 'https://dgsdocinfo.appspot.com'
       }
     }
 
