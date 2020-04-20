@@ -11,6 +11,7 @@ import lombok.Data;
 public class Message {
 	
 	private UUID id;
+	private int count;
 	private String nachrichtenText;
 	private String videoPfad;
 	private boolean fromPatient;
