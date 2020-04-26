@@ -1,23 +1,18 @@
-package de.wirvsvirus.dgsdoktorundinformation;
+package de.wirvsvirus.dgsdoktorundinformation.news;
 
+
+import java.util.Calendar;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
-import de.wirvsvirus.dgsdoktorundinformation.news.News;
-import de.wirvsvirus.dgsdoktorundinformation.news.NewsController;
 
-@SpringBootTest
-class DgsDoktorUndInformationApplicationTests {
 
-	@Test
-	void contextLoads() {
-	}
+class NewsControllerTest {
 
 	@Test
 	void testGetNews() {
-		System.out.println("kasdgjgkslafaksdfh");
 		new NewsController().newsFeed.add(createNewsDummy(27));
 		new NewsController().newsFeed.add(createNewsDummy(15));		
 		new NewsController().newsFeed.add(createNewsDummy(12));
@@ -31,7 +26,7 @@ class DgsDoktorUndInformationApplicationTests {
 		new NewsController().newsFeed.add(createNewsDummy(23));
 		new NewsController().newsFeed.add(createNewsDummy(20));
 		new NewsController().newsFeed.add(createNewsDummy(2));
-		new NewsController().getNews(5, new Date(28)).stream().forEach(n -> System.out.println(n));
+		new NewsController().getNews(5, new GregorianCalendar(2014, Calendar.FEBRUARY, 28).getTime()).stream().forEach(n -> System.out.println(n));
 	}
 
 	private News createNewsDummy(long i) {
