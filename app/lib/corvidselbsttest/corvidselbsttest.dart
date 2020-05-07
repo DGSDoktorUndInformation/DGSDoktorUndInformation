@@ -97,7 +97,7 @@ class CorvidSelbsttestState extends State<CorvidSelbsttest> {
                         child: DashboardButton(
                             onPressed: () =>
                                 {corvidSelbsttestBloc.getInitialData()},
-                            text: "Test starten", style: TextStyle(color: Colors.white) ));
+                            text: "Test starten"));
                   } else {
                     return createStep(snapshot.data);
                   }

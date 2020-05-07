@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:DGSDocInfo/corvidselbsttest/corvidselbsttest.dart';
+import 'package:DGSDocInfo/featuretoggles.dart';
 import 'package:DGSDocInfo/news/newsPage.dart';
 import 'package:DGSDocInfo/profile/profile.dart';
 import 'package:DGSDocInfo/userProfile.dart';
@@ -24,6 +25,7 @@ class Dashboard extends StatefulWidget {
 class DashboardState extends State<Dashboard> {
   @override
   Widget build(BuildContext context) {
+    var elementsNext = 1;
     return Scaffold(
       backgroundColor: ThemeColors.Primary,
       appBar: AppBar(
@@ -74,7 +76,7 @@ class DashboardState extends State<Dashboard> {
                 children: dashboardActions(context),
                 crossAxisSpacing: 25,
                 mainAxisSpacing: 25,
-                crossAxisCount: 2,
+                crossAxisCount: elementsNext,
                 childAspectRatio: MediaQuery
                     .of(context)
                     .size
@@ -82,7 +84,7 @@ class DashboardState extends State<Dashboard> {
                     (MediaQuery
                         .of(context)
                         .size
-                        .height / 3),
+                        .height / (5 - elementsNext)),
               ),
             ),
             Padding(
@@ -96,40 +98,49 @@ class DashboardState extends State<Dashboard> {
   }
 
   List<Widget> dashboardActions(BuildContext context) {
-    return <Widget>[
-      DashboardButton(
+    var widgets = <Widget>[];
+    if(FeatureToggles.arztbesuchEnabled) {
+      widgets.add(DashboardButton(
         text: "Arztbesuch",
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => ArztBesuch()));
         },
-      ),
-      DashboardButton(
+      ));
+    }
+    if(FeatureToggles.aktuellesEnabled) {
+      widgets.add(DashboardButton(
         text: "Aktuelles zum Corona-Virus",
         onPressed: () {
           Navigator.push(
               context, MaterialPageRoute(builder: (context) => NewsPage()));
         },
-      ),
-      DashboardButton(
+      ));
+    }
+    if(FeatureToggles.selbsttestEnabled) {
+      widgets.add(DashboardButton(
         text: "COVID-19 Selbstdiagnose",
         onPressed: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => CorvidSelbsttest()));
+              context,
+              MaterialPageRoute(builder: (context) => CorvidSelbsttest()));
         },
-      ),
-      DashboardButton(
+      ));
+    }
+    if(FeatureToggles.seite116117Enabled) {
+      widgets.add(DashboardButton(
         text: "116 117",
         onPressed: () async {
           await launch("https://www.116117.de/de/gebaerdensprache.php");
         },
-      ),
-
-      DashboardButton(
+      ));
+    }
+    if(FeatureToggles.pdfEnabled) {
+      widgets.add(DashboardButton(
         text: "PDF-Anleitung",
         onPressed: () {},
-      ),
-
-    ];
+      ));
+    }
+    return widgets;
   }
 }
