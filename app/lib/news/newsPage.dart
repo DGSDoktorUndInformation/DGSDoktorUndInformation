@@ -1,9 +1,13 @@
+import 'dart:convert';
+
 import 'package:DGSDocInfo/appBarContent.dart';
 import 'package:DGSDocInfo/colors.dart';
 import 'package:DGSDocInfo/news/news.dart';
 import 'package:DGSDocInfo/news/newsTile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:DGSDocInfo/gateway/rest.dart' as rest;
+import 'package:http/http.dart';
 
 class NewsPage extends StatefulWidget {
   NewsPage();
@@ -17,6 +21,7 @@ class NewsPage extends StatefulWidget {
 class NewsPageState extends State<NewsPage> {
   var test;
 
+  /*
   generateNews(String title, Image thumbnail, String url, DateTime timestamp,
       bool isVideo, bool isEmbeddedVideo) {
     var testNews = new News();
@@ -30,51 +35,36 @@ class NewsPageState extends State<NewsPage> {
     test.add(testNews);
   }
 
+   */
+
   Future<List<News>> _getNewsData() async {
-    // rest.post(rest.getURL(), "body");
+    List<dynamic> newsJson;
+    List<News> newsList = new List<News>();
+    News currentNews;
+    Response response = await rest.post(rest.getURL() + "/dgsinfo/_find", '{"selector": {}}');
 
-    test = new List<News>();
+    print(response.body.toString());
 
-    generateNews(
-        "WDR COSMO Corono-News",
-        Image.network(
-            "https://www1.wdr.de/funkhaus-europa-wird-cosmo-106~_v-TeaserAufmacher.jpg"),
-        "https://www1.wdr.de/mediathek/video/radio/cosmo/video-corona-news-in-gebaerdensprache---104.html",
-        DateTime.now(),
-        true,
-        false);
+    if (response.statusCode == 200) {
+      newsJson = jsonDecode(response.body)["docs"];
 
-    generateNews(
-        "Informationen in leichter Sprache",
-        Image.network(
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/BMG_Logo.svg/2000px-BMG_Logo.svg.png"),
-        "https://www.bundesgesundheitsministerium.de/coronavirus/coronavirus-leichte-sprache.html?fbclid=iwar2n1ied0umao8zlzxa0bhgutr07x3n691ysidrutzq4jtgjhsbt9go9pce",
-        new DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day - 1),
-        false,
-        false);
+      for (var newsEntry in newsJson) {
+        currentNews = new News();
+        currentNews.url = newsEntry["link"];
+        currentNews.title = newsEntry["titel"];
+        if(newsEntry["image"] != null){
+          currentNews.thumbnail = Image.network(newsEntry["image"]);
+        }
+        currentNews.timestamp = new DateTime(
+            DateTime.now().year, DateTime.now().month, DateTime.now().day - 5);
+        currentNews.isEmbeddedVideo = false;
+        currentNews.isVideo = true;
+        newsList.add(currentNews);
 
-    generateNews(
-        "Pressemitteilung Badenwürtenberg",
-        Image.network(
-            "https://i.vimeocdn.com/video/866311781.webp?mw=1000&mh=563&q=70"),
-        "https://player.vimeo.com/video/398592777",
-        new DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day - 5),
-        true,
-        false);
+      }
+    }
 
-    generateNews(
-        "Das Corona-Virus in DGS erklärt",
-        Image.network(
-            "https://ksl-msi-nrw.de/public/styles/large/public/ksl/msi/bilder/Vorschau_Corona_Video.jpg?h=02882563&itok=5MAtx90k"),
-        "https://ksl-msi-nrw.de/public/ksl/msi/video/ksl_corona_virus_MAGS_UT.mp4",
-        new DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day - 5),
-        true,
-        true);
-
-    return test;
+    return newsList;
   }
 
   @override
