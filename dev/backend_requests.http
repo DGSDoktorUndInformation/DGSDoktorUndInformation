@@ -1,5 +1,6 @@
 ### Session starten
-POST http://localhost:8080/session
+POST /session
+Host: {{host}}
 Content-Type: application/json
 
 {
@@ -15,7 +16,8 @@ Content-Type: application/json
 }
 
 ### Session inkl. Selbsttest starten
-POST http://localhost:8080/session
+POST /session
+Host: {{host}}
 Content-Type: application/json
 
 {
@@ -37,10 +39,12 @@ Content-Type: application/json
 }
 
 ### Get Session
-GET http://localhost:8080/session/{SessionKey}
+GET /session/{SessionKey}
+Host: {{host}}
 
 ### Message vom Patienten senden
-POST http://localhost:8080/session/{SessionKey}/message
+POST /session/{SessionKey}/message
+Host: {{host}}
 Content-Type: application/json
 
 {
@@ -52,7 +56,8 @@ Content-Type: application/json
 
 
 ### Message vom Arzt senden
-POST http://localhost:8080/session/{SessionKey}/message
+POST /session/{SessionKey}/message
+Host: {{host}}
 Content-Type: application/json
 
 {
@@ -63,6 +68,7 @@ Content-Type: application/json
 }
 
 ### Vorgefertigte Fragen zum spezifischen Begriff suchen
-GET http://localhost:8080/messageRepository?tag={Begriff};
+GET /messageRepository?tag={Begriff};
+Host: {{host}}
 
 ###
