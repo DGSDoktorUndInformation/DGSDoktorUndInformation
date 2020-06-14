@@ -47,7 +47,6 @@
 </template>
 
 <script>
-    import axios from 'axios'
     import Alert from "../components/Alert";
 
     export default {
@@ -91,9 +90,8 @@
             async inhaltAnlegen() {
                 this.ermittleDatum();
                 this.fuelleContentBools();
-                await axios.post("/dgsinfo", this.content, {withCredentials: true})
+                await this.$axios.post("/dgsinfo", this.content)
                     .then(response => {
-                        // TODO funktioniert bei 401 (ggf. auch bei anderen 400er) nicht, da exception
                         if(response.status === 201) {
                             this.resetFormular();
                             this.$refs.form.resetValidation();

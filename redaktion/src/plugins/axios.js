@@ -2,6 +2,7 @@
 
 import Vue from 'vue';
 import axios from "axios";
+import router from "../router";
 
 // Full config:  https://github.com/axios/axios#request-config
 // axios.defaults.baseURL = process.env.baseURL || process.env.apiUrl || '';
@@ -12,14 +13,14 @@ axios.defaults.baseURL = process.env.VUE_APP_COUCHDB_URL
 let config = {
   // baseURL: process.env.baseURL || process.env.apiUrl || ""
   // timeout: 60 * 1000, // Timeout
-  // withCredentials: true, // Check cross-site Access-Control
+  withCredentials: true, // Check cross-site Access-Control
 };
 
 const _axios = axios.create(config);
 
 _axios.interceptors.request.use(
     function(config) {
-      // Do something before request is sent
+        // Do something before request is sent
       return config;
     },
     function(error) {
@@ -34,8 +35,11 @@ _axios.interceptors.response.use(
       // Do something with response data
       return response;
     },
-    function(error) {
+    async function(error) {
       // Do something with response error
+        if(error.response.status === 401) {
+            await router.push({name: "Login", params: {message:"Login abgelaufen, Formular konnte nicht gespeichert werden"}})
+        }
       return Promise.reject(error);
     }
 );

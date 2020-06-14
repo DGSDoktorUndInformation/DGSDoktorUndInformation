@@ -1,5 +1,6 @@
 <template>
     <v-form>
+        <Alert v-if="message" type="error">{{message}}</Alert>
         <v-text-field label="Username" v-model="username"></v-text-field>
         <v-text-field label="Passwort" v-model="password" :type="'password'"></v-text-field>
         <v-btn @click="login">Login</v-btn>
@@ -7,14 +8,22 @@
 </template>
 
 <script>
-    import axios from "axios";
+    import Alert from "../components/Alert";
 
     export default {
         name: "Login",
+        components: {Alert},
         data() {
             return {
                 username: "",
                 password: ""
+            }
+        },
+        props: {
+            message: {
+                type: String,
+                required: false,
+                default: null
             }
         },
         methods: {
@@ -23,7 +32,7 @@
                     name: this.username,
                     password: this.password
                 }
-                await axios.post("/_session", requestParams, {withCredentials: true});
+                await this.$axios.post("/_session", requestParams);
                 await this.$router.push({name: "ArtikelErfassung"});
             }
         }

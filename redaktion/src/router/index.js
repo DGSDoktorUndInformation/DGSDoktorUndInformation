@@ -9,7 +9,8 @@ Vue.use(VueRouter)
   {
     path: '/',
     name: 'Login',
-    component: Login
+    component: Login,
+    props: true
   },
   {
     path:'/artikel-erfassen',
