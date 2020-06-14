@@ -1,6 +1,6 @@
 <template>
     <v-container>
-        <v-form v-model="isValid">
+        <v-form v-model="isValid" ref="form">
             <v-text-field
                     v-model="content.link"
                     :rules="linkRules"
@@ -35,17 +35,24 @@
             <v-btn @click="inhaltAnlegen()" :disabled="!isValid">
                 Senden
             </v-btn>
+            <v-spacer></v-spacer>
+            <Alert v-if="success" type="success" :timeout="timeoutDuration" class="mb-4 mt-4">
+                News erfolgreich erfasst.
+            </Alert>
+            <Alert v-if="error" type="error" class="mb-4 mt-4">
+                Es ist ein Fehler aufgetreten.
+            </Alert>
         </v-form>
-
-
     </v-container>
 </template>
 
 <script>
     import axios from 'axios'
+    import Alert from "../components/Alert";
 
     export default {
         name: "ArtikelErfassung",
+        components: {Alert},
         data() {
             return {
                 content: {
@@ -55,9 +62,11 @@
                     "link": null,
                     "erfassungsZeit": null
                 },
-                selectedCheckboxen: []
-                ,
-                isValid: true,
+                selectedCheckboxen: [],
+                timeoutDuration: 30000,
+                isValid: false,
+                error: null,
+                success: null,
                 linkRules: [v => /^(https:|http:|www\.)\S*/.test(v) || "Bitte geben Sie eine gültige URL ein."],
                 checkboxRules: [selectedCheckboxen => selectedCheckboxen.length > 0 || "Bitte wählen Sie mindestens eine der Optionen aus. "]
             }
@@ -82,9 +91,26 @@
             async inhaltAnlegen() {
                 this.ermittleDatum();
                 this.fuelleContentBools();
-                await axios.post("/dgsinfo", this.content, {withCredentials: true});
+                await axios.post("/dgsinfo", this.content, {withCredentials: true})
+                    .then(response => {
+                        // TODO funktioniert bei 401 (ggf. auch bei anderen 400er) nicht, da exception
+                        if(response.status === 201) {
+                            this.resetFormular();
+                            this.$refs.form.resetValidation();
+                            this.setAlertStates(true)
+                        } else {
+                            this.setAlertStates(false)
+                        }
+                    });
+            },
+            resetFormular() {
+                this.selectedCheckboxen = [];
+                this.content.link = null;
+            },
+            setAlertStates(isSuccess) {
+                this.error = !isSuccess
+                this.success = isSuccess
             }
-
         },
     }
 
