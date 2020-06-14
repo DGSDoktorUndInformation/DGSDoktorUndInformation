@@ -1,0 +1,130 @@
+### Vorher CouchDB in Docker starten: docker run -p 5984:5984 -d -e COUCHDB_USER=admin -e COUCHDB_PASSWORD=password couchdb:latest
+
+### Login as Admin
+POST /_session
+Content-Type: application/json
+Host: {{host}}
+
+{
+  "name": "{{admin_username}}",
+  "password": "{{admin_password}}"
+}
+
+### Configure Cluster as single_node
+POST /_cluster_setup
+Accept: application/json, text/plain
+Host: {{host}}
+Content-Type: application/json
+
+{
+  "action": "enable_single_node",
+  "username": "{{admin_username}}",
+  "password": "{{admin_password}}",
+  "bind_address":"0.0.0.0",
+  "port": {{port}}
+}
+
+### GET Cluster-Setup
+GET /_cluster_setup HTTP/1.1
+Accept: application/json
+Host: {{host}}
+
+
+##### Configure CORS
+### Enable CORS
+PUT /_node/nonode@nohost/_config/httpd/enable_cors
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+"true"
+
+### Set Origins
+PUT /_node/nonode@nohost/_config/cors/origins
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+"*"
+
+### Set Credentials
+PUT /_node/nonode@nohost/_config/cors/credentials
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+"true"
+
+### GET CORS-Config
+GET /_node/nonode@nohost/_config/cors HTTP/1.1
+Accept: application/json
+Host: {{host}}
+
+#####
+
+### Create Database
+PUT /{{db_name}}  HTTP/1.1
+Accept: application/json
+Host: {{host}}
+
+### Set roles for database
+PUT /{{db_name}}/_security  HTTP/1.1
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+{
+  "members": {
+    "roles": [
+      "_admin",
+      "publisher",
+      "read_only"
+    ]
+  },
+  "admins": {
+    "roles": [
+      "_admin"
+    ]
+  }
+}
+
+### Get securityinformation for database
+GET /{{db_name}}/_security  HTTP/1.1
+Accept: application/json
+Host: {{host}}
+
+### Create user for publisher
+PUT /_users/org.couchdb.user:{{publisher_username}}
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+{
+  "name": "{{publisher_username}}", "password": "{{publisher_password}}", "roles": ["publisher"], "type": "user"
+}
+
+### GET userentry for publisher
+GET /_users/org.couchdb.user:{{publisher_username}}
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+### Create user for read-only
+PUT /_users/org.couchdb.user:{{read_only_username}}
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+{
+  "name": "{{read_only_username}}", "password": "{{read_only_password}}", "roles": ["read_only"], "type": "user"
+}
+
+### GET userentry for read-only
+GET /_users/org.couchdb.user:{{read_only_username}}
+Authorization: Basic YWRtaW46cGFzc3dvcmQ=
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+###
