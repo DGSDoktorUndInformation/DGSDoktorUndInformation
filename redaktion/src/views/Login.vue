@@ -1,10 +1,19 @@
 <template>
-    <v-form>
-        <Alert v-if="message" type="error">{{message}}</Alert>
-        <v-text-field label="Username" v-model="username"></v-text-field>
-        <v-text-field label="Passwort" v-model="password" :type="'password'"></v-text-field>
-        <v-btn @click="login">Login</v-btn>
-    </v-form>
+    <v-container fluid class="fill-height">
+        <v-row justify="center">
+            <v-col cols="11" md="4">
+                <v-form v-model="valid">
+                    <Alert v-if="message && !alertmessage" type="error">{{message}}</Alert>
+                    <v-text-field label="Username" v-model="username" :rules="usernameRules"></v-text-field>
+                    <v-text-field label="Passwort" v-model="password" :type="'password'" :rules="passwordRules"></v-text-field>
+                    <v-row justify="end" class="ma-0">
+                        <v-btn color="primary" :disabled="!valid" @click="login">Login</v-btn>
+                    </v-row>
+                </v-form>
+                <Alert v-if="alertmessage" type="error" class="mb-4 mt-4">{{alertmessage}} </Alert>
+            </v-col>
+        </v-row>
+    </v-container>
 </template>
 
 <script>
@@ -16,7 +25,11 @@
         data() {
             return {
                 username: "",
-                password: ""
+                password: "",
+                alertmessage: "",
+                valid: false,
+                usernameRules: [v => v.length !== 0 || "Bitte geben Sie einen Username ein."],
+                passwordRules: [v => v.length !== 0 || "Bitte geben Sie ein Passwort ein."]
             }
         },
         props: {
@@ -32,8 +45,14 @@
                     name: this.username,
                     password: this.password
                 }
-                await this.$axios.post("/_session", requestParams);
-                await this.$router.push({name: "ArtikelErfassung"});
+                await this.$axios.post("/_session", requestParams)
+                        .then(response => {
+                            if (response.status === 200) {
+                                this.$router.push({name: "ArtikelErfassung"});
+                            } else {
+                                this.alertmessage = "Username und/oder Passwort sind falsch."
+                            }
+                        });
             }
         }
     }

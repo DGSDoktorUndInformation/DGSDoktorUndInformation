@@ -37,8 +37,11 @@ _axios.interceptors.response.use(
     },
     async function(error) {
       // Do something with response error
-        if(error.response.status === 401) {
+        if(error.response.status === 401 && error.response.data.reason === "You are not authorized to access this db.") {
             await router.push({name: "Login", params: {message:"Login abgelaufen, Formular konnte nicht gespeichert werden"}})
+        }
+        if(error.response.status === 401 && error.response.data.reason === "Name or password is incorrect.") {
+            return error.response;
         }
       return Promise.reject(error);
     }
