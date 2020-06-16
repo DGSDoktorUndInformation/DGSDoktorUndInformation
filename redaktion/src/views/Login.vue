@@ -47,7 +47,7 @@
                 }
                 await this.$axios.post("/_session", requestParams)
                         .then(response => {
-                            if (response.status === 200) {
+                            if (response.status === 200 && response.data.roles.includes("publisher")) {
                                 this.$router.push({name: "ArtikelErfassung"});
                             } else {
                                 this.alertmessage = "Username und/oder Passwort sind falsch."
