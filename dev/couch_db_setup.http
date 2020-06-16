@@ -93,6 +93,17 @@ GET /{{db_name}}/_security  HTTP/1.1
 Accept: application/json
 Host: {{host}}
 
+### Designdocument für die Rollenberechtigung anlegen
+
+PUT /{{db_name}}/_design/authentifizierung
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+{
+  "validate_doc_update": "function(newDoc, oldDoc, userCtx) { if (userCtx.roles.indexOf('read_only') !== -1) throw ({forbidden : \"READ_ONLY User\" }  ); }"
+}
+
 ### Create user for publisher
 PUT /_users/org.couchdb.user:{{publisher_username}}
 Accept: application/json
@@ -127,4 +138,49 @@ Accept: application/json
 Host: {{host}}
 Content-Type: application/json
 
+
+### Views für die Flutterapp anlegen
+
+PUT /{{db_name}}/_design/flutter
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+{"_id":"_design/flutter","views":{"byDate":{"map":"function (doc) {\n  emit(doc.erfassungsZeit, doc);\n}"}},"language":"javascript"}
+
 ###
+
+GET /{{db_name}}/_design/flutter
+Accept: application/json
+Host: {{host}}
+
+### Get Flutterview
+
+GET /{{db_name}}/_design/flutter/_view/byDate
+Accept: application/json
+Host: {{host}}
+
+### Login as Publisher
+POST /_session
+Content-Type: application/json
+Host: {{host}}
+
+{
+  "name": "{{publisher_username}}",
+  "password": "{{publisher_password}}"
+}
+
+### Artikeldokument anlegen
+
+POST /{{db_name}}/
+Accept: application/json
+Host: {{host}}
+Content-Type: application/json
+
+{
+  "gebaerdensprachVideo" : true,
+  "untertitel" : true,
+  "leichteSprache" : true,
+  "link": "http://example.com",
+  "erfassungsZeit": "2012-04-23T18:25:43.511Z"
+}
