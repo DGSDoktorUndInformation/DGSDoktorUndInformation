@@ -3,35 +3,65 @@
         <v-row justify="center">
             <v-col cols="11" md="4">
                 <v-form v-model="isValid" ref="form">
+                    <v-tooltip right>
+                        <template v-slot:activator="{on}">
+
                             <v-text-field
                                     v-model="content.link"
                                     :rules="linkRules"
                                     label="Link zum Artikel/Video"
                                     required
-                            />
+                            >
+                                <span slot="append" v-on="on"><v-icon>mdi-help-circle-outline</v-icon></span>
+                            </v-text-field>
+                        </template>
+                        <span>Ich bin ein Tooltip</span>
+                    </v-tooltip>
                     <v-item-group v-model="isValid" :mandatory="true">
-                        <v-checkbox
-                                hide-details
-                                v-model="selectedCheckboxen"
-                                :rules="checkboxRules "
-                                label="DGS"
-                                value="DGS"
+                        <v-tooltip right>
+                            <template v-slot:activator="{on}">
+                                <v-checkbox
+                                        hide-details
+                                        v-model="selectedCheckboxen"
+                                        :rules="checkboxRules "
+                                        label="DGS"
+                                        value="DGS"
+                                        v-on="on"
+                                >
+                                    <span slot="append" v-on="on"><v-icon>mdi-help-circle-outline</v-icon></span>
+                                </v-checkbox>
+                            </template>
+                            <span>Ich bin ein Tooltip</span>
+                        </v-tooltip>
+                        <v-tooltip right>
+                            <template v-slot:activator="{on}">
+                                <v-checkbox
+                                        hide-details
+                                        v-model="selectedCheckboxen"
+                                        :rules="checkboxRules"
+                                        label="Untertitel"
+                                        value="Untertitel"
+                                        slot="activator"
 
-                        />
-                        <v-checkbox
-                                hide-details
-                                v-model="selectedCheckboxen"
-                                :rules="checkboxRules"
-                                label="Untertitel"
-                                value="Untertitel"
-
-                        />
-                        <v-checkbox
-                                v-model="selectedCheckboxen"
-                                :rules="checkboxRules"
-                                label="Leichte/Einfache Sprache"
-                                value="Leichte/Einfache Sprache"
-                        />
+                                >
+                                    <span slot="append" v-on="on"><v-icon>mdi-help-circle-outline</v-icon></span>
+                                </v-checkbox>
+                            </template>
+                            <span>Ich bin ein Tooltip</span>
+                        </v-tooltip>
+                        <v-tooltip right>
+                            <template v-slot:activator="{on}">
+                                <v-checkbox
+                                        v-model="selectedCheckboxen"
+                                        :rules="checkboxRules"
+                                        label="Leichte/Einfache Sprache"
+                                        value="Leichte/Einfache Sprache"
+                                >
+                                    <span slot="append" v-on="on"><v-icon>mdi-help-circle-outline</v-icon></span>
+                                </v-checkbox>
+                            </template>
+                            <span>Ich bin ein Tooltip</span>
+                        </v-tooltip>
                     </v-item-group>
                     <v-row justify="end" class="ma-0">
                         <v-btn color="primary" @click="inhaltAnlegen()" :disabled="!isValid">
@@ -107,7 +137,6 @@
             }
         },
         created() {
-            console.log("moep");
             this.$axios({
                 url: "/_session"
             })
@@ -115,7 +144,6 @@
                         if (!response.data.info.authenticated) {
                             this.$router.push({name: "Login"});
                         }
-                        console.log(response);
                     })
         }
     }
