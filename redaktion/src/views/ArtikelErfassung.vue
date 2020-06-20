@@ -76,7 +76,7 @@
         },
         methods: {
             ermittleDatum() {
-                var today = new Date().toDateString();
+                this.content.erfassungsZeit = new Date().toDateString();
             },
             fuelleContentBools() {
                 this.content.gebaerdensprachVideo = this.selectedCheckboxen.includes('DGS');
