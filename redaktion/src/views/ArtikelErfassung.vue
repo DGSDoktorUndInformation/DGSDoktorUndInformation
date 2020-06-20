@@ -106,6 +106,18 @@
                 this.success = isSuccess
             }
         },
+        created() {
+            console.log("moep");
+            this.$axios({
+                url: "/_session"
+            })
+                    .then(response => {
+                        if (!response.data.info.authenticated) {
+                            this.$router.push({name: "Login"});
+                        }
+                        console.log(response);
+                    })
+        }
     }
 
 </script>

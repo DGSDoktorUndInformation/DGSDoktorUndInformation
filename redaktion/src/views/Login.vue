@@ -54,6 +54,16 @@
                             }
                         });
             }
+        },
+        created() {
+            this.$axios({
+                url: "/_session"
+            })
+                    .then(response => {
+                        if (response.data.info.authenticated) {
+                            this.$router.push({name: "ArtikelErfassung"});
+                        }
+                    })
         }
     }
 </script>
