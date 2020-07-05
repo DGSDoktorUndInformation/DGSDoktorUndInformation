@@ -2,12 +2,14 @@ import 'package:DGSDocInfo/news/news.dart';
 import 'package:DGSDocInfo/videoplayer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_html/flutter_html.dart';
 import 'package:intl/intl.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 newsTile(News news, BuildContext context) {
-  TextStyle textStyle = TextStyle(fontFamily: 'Montserrat', fontSize: 20.0);
-  TextStyle subTitle = TextStyle(fontFamily: 'Montserrat', fontSize: 14.0, color: Colors.grey);
+  TextStyle textStyle = TextStyle(fontFamily: 'Montserrat', fontSize: 18.0);
+  TextStyle subTitle = TextStyle(
+      fontFamily: 'Montserrat', fontSize: 14.0, color: Colors.grey);
 
   Icon linkType;
   String dateString;
@@ -20,30 +22,35 @@ newsTile(News news, BuildContext context) {
 
   int calculateDifference(DateTime date) {
     DateTime now = DateTime.now();
-    return DateTime(date.year, date.month, date.day).difference(DateTime(now.year, now.month, now.day)).inDays;
+    return DateTime(date.year, date.month, date.day)
+        .difference(DateTime(now.year, now.month, now.day))
+        .inDays;
   }
 
-  if(calculateDifference(news.timestamp) == 0){
-    dateString = "Heute "  + DateFormat('hh:mm').format(news.timestamp);
+  if (calculateDifference(news.timestamp) == 0) {
+    dateString = "Heute " + DateFormat('hh:mm').format(news.timestamp);
   }
-  else{
+  else {
     dateString = DateFormat('dd.MM.yyyy hh:mm').format(news.timestamp);
   }
 
   return Container(
-      width: MediaQuery.of(context).size.width,
+      width: MediaQuery
+          .of(context)
+          .size
+          .width,
       color: Colors.white,
       child: GestureDetector(
           onTap: () async {
             if (news.isEmbeddedVideo) {
-             await showDialog(
-                 context: context,
+              await showDialog(
+                  context: context,
 
-                 builder: (BuildContext context) {
-                   return AlertDialog(
-                     content: Videoplayer(news.url),
-                   );
-                 });
+                  builder: (BuildContext context) {
+                    return AlertDialog(
+                      content: Videoplayer(news.url),
+                    );
+                  });
             } else {
               await launch(news.url);
             }
@@ -69,11 +76,14 @@ newsTile(News news, BuildContext context) {
                   dateString,
                   style: subTitle,
                   textAlign: TextAlign.left,
-                ),],),
+                ),
+                ],),
 
                 SizedBox(
                   height: 10,
                 ),
+                news.thumbnail == null ?
+                Html(data: news.text) :
                 SizedBox(height: 125, child: news.thumbnail)
               ],
             ),

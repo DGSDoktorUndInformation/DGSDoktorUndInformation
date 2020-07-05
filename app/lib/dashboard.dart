@@ -129,7 +129,7 @@ class DashboardState extends State<Dashboard> {
     }
     if(FeatureToggles.seite116117Enabled) {
       widgets.add(DashboardButton(
-        text: "116 117",
+        text: "Patientenservice 116 117",
         onPressed: () async {
           await launch("https://www.116117.de/de/gebaerdensprache.php");
         },

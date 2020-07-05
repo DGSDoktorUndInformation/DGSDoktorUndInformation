@@ -1,6 +1,7 @@
 import 'package:DGSDocInfo/appBarContent.dart';
 import 'package:DGSDocInfo/colors.dart';
 import 'package:DGSDocInfo/news/news.dart';
+import 'package:DGSDocInfo/news/newsApi.dart';
 import 'package:DGSDocInfo/news/newsTile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -31,48 +32,7 @@ class NewsPageState extends State<NewsPage> {
   }
 
   Future<List<News>> _getNewsData() async {
-    // rest.post(rest.getURL(), "body");
-
-    test = new List<News>();
-
-    generateNews(
-        "WDR COSMO Corono-News",
-        Image.network(
-            "https://www1.wdr.de/funkhaus-europa-wird-cosmo-106~_v-TeaserAufmacher.jpg"),
-        "https://www1.wdr.de/mediathek/video/radio/cosmo/video-corona-news-in-gebaerdensprache---104.html",
-        DateTime.now(),
-        true,
-        false);
-
-    generateNews(
-        "Informationen in leichter Sprache",
-        Image.network(
-            "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/BMG_Logo.svg/2000px-BMG_Logo.svg.png"),
-        "https://www.bundesgesundheitsministerium.de/coronavirus/coronavirus-leichte-sprache.html?fbclid=iwar2n1ied0umao8zlzxa0bhgutr07x3n691ysidrutzq4jtgjhsbt9go9pce",
-        new DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day - 1),
-        false,
-        false);
-
-    generateNews(
-        "Pressemitteilung Badenwürtenberg",
-        Image.network(
-            "https://i.vimeocdn.com/video/866311781.webp?mw=1000&mh=563&q=70"),
-        "https://player.vimeo.com/video/398592777",
-        new DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day - 5),
-        true,
-        false);
-
-    generateNews(
-        "Das Corona-Virus in DGS erklärt",
-        Image.network(
-            "https://ksl-msi-nrw.de/public/styles/large/public/ksl/msi/bilder/Vorschau_Corona_Video.jpg?h=02882563&itok=5MAtx90k"),
-        "https://ksl-msi-nrw.de/public/ksl/msi/video/ksl_corona_virus_MAGS_UT.mp4",
-        new DateTime(
-            DateTime.now().year, DateTime.now().month, DateTime.now().day - 5),
-        true,
-        true);
+    test = await NewsApi().getNews(1);
 
     return test;
   }
